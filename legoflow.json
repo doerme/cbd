@@ -1,0 +1,23 @@
+{
+    "version": "0.1.42",
+    "type": "mobile",
+    "assets": "",
+    "es6": true,
+    "webp": false,
+    "legolib": false,
+    "hot": true,
+    "isUglifyJs": true,
+    "isPackVueStyle": false,
+    "watch": [],
+    "publicPath": "",
+    "packImgSize": "",
+    "packCommon": "",
+    "other": "",
+    "dist": "",
+    "output": "",
+    "shell": "",
+    "alias": {},
+    "global": {},
+    "externals": {},
+    "proxy": {}
+}
