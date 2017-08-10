@@ -1,4 +1,4 @@
-.login-wrap,.reg-warp{
+.login-wrap,.reg-wrap{
     position: absolute;
     left: 0;
     top: 0;
@@ -32,9 +32,6 @@
         margin-bottom: rem(20);
         box-shadow: rem(2) rem(2) rem(2) #888888;
     }
-}
-
-.login-wrap{
     .input-wrap{
         position: absolute;
         top: rem(230);
@@ -48,6 +45,33 @@
         margin-top: rem(40);
         text-align: center;
     }
+}
+
+.reg-wrap{
+    .regdone-bt{
+        display: inline-block;
+        width: rem(286);
+        height: rem(85);
+    }
+    .form-check{
+        .form-input{
+            display: inline-block;
+            width: rem(280);
+        }
+        .checkcode{
+            display: inline-block;
+            height: rem(80);
+        }
+        .get-check-code{
+            display: inline-block;
+            font-size: rem(28);
+            color: #349dff;
+        }
+    }
+}
+
+.login-wrap{
+    
     .login-bt{
         display: inline-block;
         width: rem(286);
