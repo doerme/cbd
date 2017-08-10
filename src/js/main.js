@@ -12,6 +12,10 @@ var app = {
             $('.js-login-wrap').addClass('hide');
             $('.js-reg-wrap').removeClass('hide');
         })
+        $('.js-gologin-bt').on('click', function(){
+            $('.js-login-wrap').removeClass('hide');
+            $('.js-reg-wrap').addClass('hide');
+        })
     }
 }
 

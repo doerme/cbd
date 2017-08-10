@@ -68,6 +68,18 @@
             color: #349dff;
         }
     }
+    .go-to-login{
+        margin-top: rem(30);
+        border-top: rem(3) solid #c7f0ff;
+        width: 100%;
+        text-align: center;
+        .gologin-bt{
+            display: inline-block;
+            width: rem(295);
+            height: rem(30);
+            margin-top: rem(45);
+        }
+    }
 }
 
 .login-wrap{
