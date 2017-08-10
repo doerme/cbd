@@ -1,0 +1,124 @@
+.coin-center-wrap{
+    position: absolute;
+    top: 5%;
+    height: 90%;
+    width: rem(640);
+    left: 50%;
+    margin-left: rem(-320);
+    background: #fffcf4;
+    border: rem(2) solid #ffd756;
+    border-radius: rem(15);
+    .cc-title{
+        position: relative;
+        width: 100%;
+        height: rem(105);
+        line-height: rem(105);
+        text-align: center;
+        border-bottom: rem(2) solid #cfcfcf;
+        font-size: rem(36);
+        color: #333;
+    }
+    .cc-close{
+        position: absolute;
+        width: rem(60);
+        height: rem(60);
+        font-size: rem(60);
+        text-align: center;
+        line-height: rem(60);
+        top: rem(30);
+        right: rem(10);
+    }
+    .cc-list{
+        height: rem(600);
+        width: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        border-top: rem(2) solid #ededed;
+        li{
+            position: relative;
+            height: rem(88);
+            line-height: rem(88);
+            border-bottom: rem(2) solid #ededed;
+            .desc{
+                display: inline-block;
+                width: rem(320);
+                overflow: hidden;
+                text-indent: rem(30);
+            }
+            .num{
+                top: 0;
+                right: rem(140);
+                position: absolute;
+                font-size: rem(30);
+                &.red{
+                    color: #ff7200;
+                }
+                &.green{
+                    color: #38cf15;
+                }
+            }
+            .state{
+                position: absolute;
+                top: rem(26);
+                right: rem(28);
+                width: rem(100);
+                height: rem(43);
+                text-align: center;
+                line-height: rem(43);
+                &.yellow{
+                    color: #a3a3a3;
+                    background: #ffd85e;
+                }
+                &.gray{
+                    background: #a3a3a3;
+                    color: #FFF;
+                }
+            }
+        }
+    }
+    .cc-ctrl{
+        position: relative;
+        width: 100%;
+        height: rem(310);
+        text-align: center;
+        .ccc-title{
+            width: 100%;
+            height: rem(80);
+            line-height: rem(80);
+            text-align: center;
+            font-size: rem(24);
+            color: #999;
+            text-align: center;
+        }
+        .ccc-value{
+            width: 100%;
+            height: rem(128);
+            text-align: center;
+            font-size: rem(60);
+            color: #ff7200;
+            font-weight: bold;
+        }
+        .ccc-out{
+            display: inline-block;
+            width: rem(260);
+            height: rem(70);
+            text-align: center;
+            line-height: rem(70);
+            font-size: rem(30);
+            color: #333;
+            background: #ffc100;
+            border-radius: rem(30);
+        }
+        .ccc-in{
+            display: inline-block;
+            width: rem(260);
+            height: rem(70);
+            text-align: center;
+            line-height: rem(70);
+            font-size: rem(30);
+            color: #333;
+            background: #ff7200;
+            border-radius: rem(30);
+        }
+    }
+}
