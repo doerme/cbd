@@ -72,7 +72,7 @@
     <!-- main-view end -->
 
     <!-- 交易弹窗 -->
-    <div class="coin-center-wrap">
+    <div class="coin-center-wrap common-client-wrap hide">
         <div class="cc-title">装备交易中心</div>
         <div class="cc-close">×</div>
         <div class="cc-ctrl">
@@ -98,6 +98,67 @@
     </div>
     <!-- 交易弹窗 end -->
 
+    <!-- 我的激活码 -->
+    <div class="jhm-wrap common-client-wrap hide">
+        <div class="cc-title">我的激活码</div>
+        <div class="cc-close">×</div>
+        <div class="cc-ctrl">
+            <div class="ccc-title">可用激活码数量</div>
+            <div class="ccc-value">8888</div>
+            <div class="ccc-out">激活</div>
+            <div class="ccc-in">转让</div>
+        </div>
+    </div>
+    <!-- 我的激活码end -->
+
+    <!-- 没有激活码 -->
+    <div class="jhm-wrap common-client-wrap hide">
+        <img class="cc-picnote" src="./img/page/none-jhm.png" />
+        <div class="cc-close">×</div>
+        <div class="cc-ctrl">
+            <div class="ccc-out">重新激活</div>
+            <div class="ccc-in">关闭</div>
+        </div>
+    </div>
+    <!-- 没有激活码end -->
+
+    <!-- 激活成功 -->
+    <div class="jhm-wrap common-client-wrap hide">
+        <img class="cc-picnote" src="./img/page/success-jhm.png" />
+        <div class="cc-close">×</div>
+        <div class="cc-ctrl">
+            <div class="ccc-in">关闭</div>
+        </div>
+    </div>
+    <!-- 激活成功 end -->
+
+    <!-- 转让用户 -->
+    <div class="jhm-wrap common-client-wrap">
+        <div class="cc-title">转让激活码</div>
+        <div class="cc-form">
+            <input class="ccf-input" type="text" placeholder="请输入转让者手机号" />
+            <input class="ccf-input" type="text" placeholder="转让数量" />
+        </div>
+        <div class="cc-close">×</div>
+        <div class="cc-ctrl">
+            <div class="ccc-in">转让</div>
+        </div>
+    </div>
+    <!-- 转让用户 end -->
+
+    <!-- 转让用户确认 -->
+    <div class="jhm-wrap common-client-wrap hide">
+        <div class="cc-big-note">
+            <div class="ccb-t">是否转让<span>5</span>个激活码给</div>
+            <div class="ccb-d">灰色的(15566655423)</div>
+        </div>
+        <div class="cc-close">×</div>
+        <div class="cc-ctrl">
+            <div class="ccc-out">是</div>
+            <div class="ccc-in">否</div>
+        </div>
+    </div>
+    <!-- 转让用户确认 end -->
 
     <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="./js/main.js"></script>

@@ -1,4 +1,4 @@
-.coin-center-wrap{
+.common-client-wrap{
     position: absolute;
     top: 5%;
     height: 90%;
@@ -7,7 +7,45 @@
     margin-left: rem(-320);
     background: #fffcf4;
     border: rem(2) solid #ffd756;
-    border-radius: rem(15);
+    border-radius: rem(28);
+    &.jhm-wrap{
+        height: rem(600);
+    }
+    .cc-form{
+        width: 100%;
+        text-align: center;
+        margin-top: rem(40); 
+        .ccf-input{
+            display: inline-block;
+            border: none;
+            width: rem(525);
+            height: rem(100);
+            border: rem(2) solid #cfcfcf;
+            text-align: center;
+            line-height: rem(100);
+            margin-bottom: rem(35);
+        }
+    }
+    .cc-big-note{
+        margin-top: rem(180);
+        width: 100%;
+        height: rem(180);
+        text-align: center;
+        .ccb-t{
+            font-size: rem(48);
+            color: #333;
+            span{
+                color: #ffc100;
+            }
+        }
+        .ccb-d{
+            font-size: rem(36);
+            color: #333;
+        }
+    }
+    .cc-picnote{
+        margin-top: rem(20);
+    }
     .cc-title{
         position: relative;
         width: 100%;
