@@ -1,6 +1,11 @@
 @charset "UTF-8";
+$font_size : 75;
 
+@function rem($pixels){
+    @return $pixels / $font_size + rem;
+}
 @import "base/base";
+@import "base/page";
 @import "img";
 
 body {
@@ -16,4 +21,8 @@ body {
     }
 }
 
-// Coding...
+.hide{
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}

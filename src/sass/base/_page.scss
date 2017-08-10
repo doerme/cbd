@@ -1,0 +1,101 @@
+.login-wrap,.reg-warp{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: rem(750);
+    background: #8ee0ff url('../img/page/login/login-bg.jpg') no-repeat center bottom;
+    background-size: 100% auto;
+    &::before{
+        content: '';
+        position: absolute;
+        top: rem(60);
+        left: 50%;
+        margin-left: rem(-232);
+        background:  url('../img/page/login/CBD-logo.png') no-repeat;
+        background-size: 100% auto;
+        width: rem(465);
+        height: rem(108);
+    }
+    .form-input{
+        border: none;
+        display: block;
+        height: rem(80);
+        line-height: rem(80);
+        width: 100%;
+        background: #FFF;
+        border-radius: rem(10);
+        text-indent: rem(22);
+        font-size: rem(28);
+        color: #817f82;
+        margin-bottom: rem(20);
+        box-shadow: rem(2) rem(2) rem(2) #888888;
+    }
+}
+
+.login-wrap{
+    .input-wrap{
+        position: absolute;
+        top: rem(230);
+        width: rem(610);
+        left: 50%;
+        margin-left: rem(-305);
+    }
+    .bt-wrap{
+        width: 100%;
+        overflow: hidden;
+        margin-top: rem(40);
+        text-align: center;
+    }
+    .login-bt{
+        display: inline-block;
+        width: rem(286);
+        height: rem(85);
+    }
+    .reg-bt{
+        display: inline-block;
+        width: rem(286);
+        height: rem(85);
+    }
+}
+
+.loading-wrap{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: rem(750);
+    background: #8ee0ff;
+    &-main{
+        position: absolute;
+        left: 0px;
+        top: 20%;
+        width: 100%;
+    }
+    &-main-wrap{
+        position: absolute;
+        width: rem(320);
+        height: rem(20);
+        bottom: rem(80);
+        left: 50%;
+        margin-left: rem(-160);
+        background: #63b0cc;
+        border-radius: rem(8);
+        .loading-line{
+            position: absolute;
+            left: 0;
+            top:0;
+            height: 100%;
+            width: 0%;
+            background: #ffe7c7;
+            -webkit-transition: width 2s; /* Safari */
+            transition: width 2s;
+            border-radius: rem(8);
+            &.full{
+                width: 95%;
+            }
+        }
+    }
+}
