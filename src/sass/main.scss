@@ -29,3 +29,70 @@ body {
     opacity: 0;
     pointer-events: none;
 }
+.game-wrap{
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding-top: rem(405);
+    .area-wrap{
+        position: relative;
+        width: 100%;
+    }
+    .area-wrap-block{
+        position: relative;
+        height: rem(603);
+        width: 100%;
+        .area-unit{
+            position: absolute;
+            width: rem(363);
+            height: rem(215);
+            background: url('../img/page/cbd/null_area.png') no-repeat;
+            background-size: 100% auto;
+            &:nth-child(1){
+                top: rem(53);
+                left: rem(204);
+            }
+            &:nth-child(2){
+                top: rem(180);
+                left: rem(420);
+            }
+            &:nth-child(3){
+                top: rem(200);
+                left: rem(-35);
+            }
+            &:nth-child(4){
+                top: rem(320);
+                left: rem(183);
+            }
+        }
+    }
+}
+.game-bg-wrap{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: #9298a1;
+    overflow: hidden;
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: rem(683);
+        background: url('../img/page/cbd/top-block.jpg') no-repeat 0 rem(-130);
+        background-size: 100% auto; 
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: rem(813);
+        width: 100%;
+        height: 100%;
+        background: url('../img/page/cbd/street-block.jpg') repeat-y;
+        background-size: 100% auto; 
+    }
+}
