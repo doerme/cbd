@@ -11,6 +11,47 @@
     &.jhm-wrap{
         height: rem(600);
     }
+    .fan-list-wrap{
+        width: 100%;
+        height: rem(600);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        li{
+            position: relative;
+            height: rem(138);
+            line-height: rem(138);
+            overflow: hidden;
+            border-bottom: rem(2) solid #ededed;
+            .fl-avatar{
+                display: inline-block;
+                width: rem(80);
+                height: rem(80);
+                border-radius: 50%;
+                vertical-align: middle;
+                margin-left: rem(25);
+            }
+            .fl-name{
+                display: inline-block;
+                font-size: rem(30);
+                color: #333;
+                vertical-align: middle;
+                margin-left: rem(20);
+            }
+            .fl-vip{
+                display: inline-block;
+                width: rem(60);
+                height: rem(30);
+                text-align: center;
+                line-height: rem(30);
+                font-size: rem(20);
+                color: #95750e;
+                vertical-align: middle;
+                margin-left: rem(10);
+                background: #ffc300;
+                border-radius: rem(10);
+            }
+        }
+    }
     .cc-form{
         width: 100%;
         text-align: center;
@@ -63,8 +104,27 @@
         font-size: rem(60);
         text-align: center;
         line-height: rem(60);
-        top: rem(30);
+        top: rem(16);
         right: rem(10);
+    }
+    .cc-fans-nav{
+        height: rem(95);
+        text-align: center;
+        .fn-unit{
+            display: inline-block;
+            width: rem(160);
+            height: rem(52);
+            text-align: center;
+            line-height: rem(52);
+            font-size: rem(26);
+            color: #d39742;
+            background: #f9f3e0;
+            margin: rem(15) rem(15);
+            &.cur{
+                background: #ffd756;
+                color: #333;
+            }
+        }
     }
     .cc-list{
         height: rem(600);
