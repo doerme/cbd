@@ -84,6 +84,34 @@
         }
     }
 }
+.qr-view{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: rem(750);
+    background: #8ee0ff url('../img/page/login/login-bg.jpg') no-repeat center bottom;
+    background-size: 100% auto;
+    &::before{
+        content: '';
+        position: absolute;
+        top: rem(60);
+        left: 50%;
+        margin-left: rem(-232);
+        background:  url('../img/page/login/CBD-logo2.png') no-repeat;
+        background-size: 100% auto;
+        width: rem(467);
+        height: rem(193);
+    }
+    .main-qr{
+        position: absolute;
+        top: rem(398);
+        left: 50%;
+        margin-left: rem(-313);
+        width: rem(616);
+    }
+}
 .login-wrap,.reg-wrap{
     position: absolute;
     left: 0;

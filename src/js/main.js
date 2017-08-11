@@ -62,6 +62,11 @@ var app = {
         $('.js-get-check-code').on('click', function(){
             self.getSmsCode();
         })
+
+        /** 二维码界面 */
+        $('.js-go-qr-view').on('click', function(){
+            $('.js-qr-view').removeClass('hide');
+        })
         
         $('.js-gologin-bt').on('click', function(){
             $('.js-login-wrap').removeClass('hide');
