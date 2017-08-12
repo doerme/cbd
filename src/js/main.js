@@ -39,6 +39,15 @@ var app = {
     },
     bindEven: function(){
         var self = this;
+        /**选地建筑逻辑 */
+        $('.js-area-wrap').on('click', '.area-unit', function(){
+            $('.select-build-wrap').removeClass('hide');
+        });
+        $('.js-sb-list > li').on('click', function(){
+            $('.js-sb-list > .cur').removeClass('cur');
+            $(this).addClass('cur');
+        });
+
         /** 登录注册成功 */
         $('.js-login-bt').on('click', function(){
             self.gameviewInit();

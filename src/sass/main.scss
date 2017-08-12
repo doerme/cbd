@@ -42,8 +42,76 @@ body {
         font-size: rem(36);
         color: #FFF;
     }
+    .sb-bt{
+        position: absolute;
+        width: rem(263);
+        height: rem(82);
+        text-align: center;
+        line-height: rem(82);
+        font-size: rem(36);
+        color: #333;
+        bottom: rem(40);
+        border-radius: rem(30);
+        &.cancel{
+            background: #929077;
+            left: rem(33);
+        }
+        &.sure{
+            background: #ffc100;
+            right: rem(33);
+        }
+    }
     .sb-list{
-
+        position: absolute;
+        left: 0;
+        top: rem(118);
+        li{
+            position: relative;
+            float: left;
+            width: rem(150);
+            height: rem(210);
+            border: rem(3) solid #61652f;
+            text-align: center;
+            margin-left: rem(42);
+            margin-bottom: rem(30);
+            &.cur{
+                border: rem(3) solid #dce56b;
+            }
+            .sbl-cover{
+                position: absolute;
+                width: rem(100);
+                left: 50%;
+                top: rem(18);
+                margin-left: rem(-50);
+            }
+            .sbl-txt{
+                position: absolute;
+                top: rem(138);
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: rem(24);
+                color: #FFF;
+            }
+            .sbl-gold{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                color: #ffcc00;
+                font-size: rem(30);
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    width: rem(30);
+                    height: rem(30);
+                    background: url('../img/page/coin.png') no-repeat;
+                    background-size: 100% auto;
+                    vertical-align: middle;
+                }
+            }
+        }
     }
     &::before{
         position: absolute;
