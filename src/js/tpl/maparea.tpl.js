@@ -1,0 +1,2 @@
+/*TMODJS:{"version":6,"md5":"7c9ebeb8f233fa9152ef656fecb27b86"}*/
+template("E:/wamp/www/Jeremy/2017xiyou/cbd/dev/src/js/tpl/maparea",function(a){"use strict";var b=this,c=(b.$helpers,b.$each),d=a.dataarr,e=(a.vrr,a.irr,a.v,a.i,b.$escape),f="";return c(d,function(a){f+=' <div class="area-wrap-block"> ',c(a,function(a){f+=" <div build_type=",f+=e(a.build_type),f+=" land_id=",f+=e(a.land_id),f+=" uid=",f+=e(a.uid),f+=' class="area-unit"></div> '}),f+=" </div> "}),new String(f)});

@@ -32,7 +32,7 @@ export default {
     ajaxPost: function(url, requestData){
         var self = this;
         return $.ajax({
-            url: this.apiHost + url,
+            url: this.apiHost + url +'?token=' + window.testtoken,
             type: 'POST',
             timeout: 8000,
             data: $.extend(requestData,{token: window.testtoken})

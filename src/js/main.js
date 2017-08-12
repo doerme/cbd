@@ -2,10 +2,14 @@ import legoWaitng from './legolib/lego-waiting/0.0.1/legoWaiting.min.js';
 import LegoToast from './legolib/lego-toast/0.0.1/legoToast.min.js';
 import util from './lib/util.js';
 $('.js-loading-line').addClass('full');
-var apiHost = '//cbd.tcpan.com';
+var pageTpl = {
+    maparea: require('./tpl/maparea.tpl')
+};
+
 var app = {
     smsTimer: null,
     waiting: new legoWaitng("请稍后.", "extraClass"),
+    curSelectArea: null,
     legoToast: new LegoToast({
         msg        : "操作成功",
         time       : 1200,
@@ -23,19 +27,62 @@ var app = {
         self.bindEven();
     },
     gameviewInit: function(){
-        debugger;
+        var self = this;
+        /**获取用户信息 */
         util.ajaxFun('/app/main/getUserInfo',{
         }).done((jdata)=>{
             if(jdata.code == 0){
                 $('.js-login-wrap,.js-reg-wrap').addClass('hide');
                 $('.js-main-view').removeClass('hide');
+                $('.js-jb-show').html(jdata.data.jb);
+                $('.js-user-name').html(jdata.data.nick || '还没名字');
+                jdata.data.headimgurl && $('.js-user-avatar').attr('src',jdata.data.headimgurl)
+                self.getUserLands();
             }else{
                 $('.js-login-wrap').removeClass('hide');
                 $('.js-main-view').addClass('hide');
             }
             
         })
-        
+    },
+    /** 购买房产 */
+    buildMap: function(selectbuildtype){
+        var self = this;
+        if(!self.curSelectArea.attr('land_id')){
+            self.windowToast('请先选择土地');
+            return;
+        }
+        if(isNaN(selectbuildtype)){
+            self.windowToast('请先选择建筑类型');
+            return;
+        }
+        util.ajaxPost('/app/main/buyLand',{
+            id: self.curSelectArea.attr('land_id'),
+            type: selectbuildtype
+        }).done((jdata)=>{
+
+        })
+    },
+    /** 获取土地 */
+    getUserLands: function(){
+        util.ajaxFun('/app/main/getUserLands',{}).done((jdata)=>{
+            if(jdata.code == 0 && jdata.data.lands.length > 0){
+                var newArr = [],b;
+                var arr = jdata.data.lands;
+                arr.forEach(function(item, index, array) {
+                    var a = Math.floor(index / 4);
+                    if (b !== a) {
+                        b = a;
+                        newArr[a] = new Array();
+                    }
+                    newArr[a].push(item);         
+                });
+                console.log('newArr', newArr);
+                $('.js-area-wrap').html(pageTpl.maparea({
+                    dataarr: newArr
+                }));
+            }
+        })
     },
     /** 完成注册 */
     regdone: function(){
@@ -66,7 +113,11 @@ var app = {
     },
     /** 完成登录 */
     logindone: function(){
+        
         var self = this;
+        window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
+        self.gameviewInit();
+        return;
         if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-login-mob').val())){
             self.windowToast('请输入正确手机号');
             return;
@@ -80,7 +131,8 @@ var app = {
             password: $('.js-login-pwd').val()
         }).done((jdata)=>{
             if(jdata.code == 0){
-                window.testtoken = jdata.data.token
+                //window.testtoken = jdata.data.token;
+                //window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
                 self.gameviewInit();
                 
             }
@@ -145,6 +197,7 @@ var app = {
         var self = this;
         /**选地建筑逻辑 */
         $('.js-area-wrap').on('click', '.area-unit', function(){
+            self.curSelectArea = $(this);
             $('.select-build-wrap').removeClass('hide');
         });
         $('.js-sb-list > li').on('click', function(){
@@ -157,6 +210,7 @@ var app = {
         });
         /**选地确认 */
         $('.js-sb-sure').on('click', function(){
+            self.buildMap($('.js-sb-list > .cur').data('type'));
             $('.select-build-wrap').addClass('hide');
         });
         /** 登录 */
@@ -186,11 +240,21 @@ var app = {
         /** 二维码界面 */
         $('.js-go-qr-view').on('click', function(){
             $('.js-qr-view').removeClass('hide');
+            util.ajaxFun('/app/main/getQRCode',{}).done((jdata)=>{
+
+            })
         })
         
         $('.js-gologin-bt').on('click', function(){
             $('.js-login-wrap').removeClass('hide');
             $('.js-reg-wrap').addClass('hide');
+        })
+
+        /** 转换用户 */
+        $('.js-user-switch').on('click', function(){
+            util.ajaxFun('/app/main/logout',{});
+            $('.js-login-wrap').removeClass('hide');
+            $('.js-main-view').addClass('hide');
         })
     }
 }
