@@ -18,7 +18,7 @@ export default {
             type: 'get',
             dataType: 'jsonp',
             timeout: 8000,
-            data: requestData
+            data: $.extend(requestData,{token: window.testtoken})
         }).done((jdata)=>{
             //console.log('global done', jdata);
             if(jdata.code == -1 || jdata.code == '-1'){
@@ -35,7 +35,7 @@ export default {
             url: this.apiHost + url,
             type: 'POST',
             timeout: 8000,
-            data: requestData
+            data: $.extend(requestData,{token: window.testtoken})
         }).done((jdata)=>{
             if(jdata.code == -1 || jdata.code == '-1'){
                 

@@ -23,7 +23,9 @@ var app = {
         self.bindEven();
     },
     gameviewInit: function(){
-        util.ajaxFun('/app/main/getUserInfo',{}).done((jdata)=>{
+        debugger;
+        util.ajaxFun('/app/main/getUserInfo',{
+        }).done((jdata)=>{
             if(jdata.code == 0){
                 $('.js-login-wrap,.js-reg-wrap').addClass('hide');
                 $('.js-main-view').removeClass('hide');
@@ -78,7 +80,9 @@ var app = {
             password: $('.js-login-pwd').val()
         }).done((jdata)=>{
             if(jdata.code == 0){
+                window.testtoken = jdata.data.token
                 self.gameviewInit();
+                
             }
         })
     },
