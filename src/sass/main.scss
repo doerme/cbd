@@ -11,6 +11,16 @@ $font_size : 75;
 @import "base/window";
 @import "img";
 
+.hide{
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.disable{
+    pointer-events: none;
+}
+
 body {
     font: $b-font-weight #{$b-font-size}/#{$b-line-height} $b-font-family;
     color: $c-text;
@@ -126,11 +136,7 @@ body {
     }
 }
 
-.hide{
-    display: none;
-    opacity: 0;
-    pointer-events: none;
-}
+
 .game-wrap{
     position: relative;
     min-height: 100%;
