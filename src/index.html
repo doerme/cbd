@@ -139,6 +139,19 @@
     </div>
     <!-- 选择建筑end -->
 
+    <!-- 拆迁 -->
+    <div class="jhm-wrap common-client-wrap js-destory-building hide">
+        <div class="cc-ctrl">
+            <div class="cc-big-note">
+                <div class="ccb-t">拆迁获得<span class="js-bcj"></span>补偿金币</div>
+                <div class="ccb-d">是否确认拆迁</div>
+            </div>
+            <div class="ccc-out js-cc-close">取消</div>
+            <div class="ccc-in js-db-sure">确认</div>
+        </div>
+    </div>
+    <!-- 拆迁end -->
+
     <!-- qrcode page -->
     <div class="qr-view js-qr-view hide">
         <img class="main-qr js-main-qr" src="./img/page/qrcode.png" />
@@ -148,7 +161,7 @@
     <!-- 交易弹窗 -->
     <div class="coin-center-wrap common-client-wrap hide">
         <div class="cc-title">装备交易中心</div>
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
             <div class="ccc-title">我的金币</div>
             <div class="ccc-value">123456</div>
@@ -173,12 +186,12 @@
     <!-- 交易弹窗 end -->
 
     <!-- 我的激活码 -->
-    <div class="jhm-wrap common-client-wrap hide">
+    <div class="jhm-wrap common-client-wrap js-my-jhm hide">
         <div class="cc-title">我的激活码</div>
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
             <div class="ccc-title">可用激活码数量</div>
-            <div class="ccc-value">8888</div>
+            <div class="ccc-value js-activation_code_num">---</div>
             <div class="ccc-out">激活</div>
             <div class="ccc-in">转让</div>
         </div>
@@ -188,7 +201,7 @@
     <!-- 没有激活码 -->
     <div class="jhm-wrap common-client-wrap hide">
         <img class="cc-picnote" src="./img/page/none-jhm.png" />
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
             <div class="ccc-out">重新激活</div>
             <div class="ccc-in">关闭</div>
@@ -197,39 +210,39 @@
     <!-- 没有激活码end -->
 
     <!-- 激活成功 -->
-    <div class="jhm-wrap common-client-wrap hide">
+    <div class="jhm-wrap common-client-wrap js-jhcg hide">
         <img class="cc-picnote" src="./img/page/success-jhm.png" />
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
-            <div class="ccc-in">关闭</div>
+            <div class="ccc-in js-cc-close">关闭</div>
         </div>
     </div>
     <!-- 激活成功 end -->
 
     <!-- 转让用户 -->
-    <div class="jhm-wrap common-client-wrap hide">
+    <div class="jhm-wrap common-client-wrap js-zryh-s1 js-zrwindow hide">
         <div class="cc-title">转让激活码</div>
         <div class="cc-form">
-            <input class="ccf-input" type="text" placeholder="请输入转让者手机号" />
-            <input class="ccf-input" type="text" placeholder="转让数量" />
+            <input class="ccf-input js-ccf-tel" type="tel" placeholder="请输入转让者手机号" />
+            <input class="ccf-input js-ccf-num" type="tel" placeholder="转让数量" />
         </div>
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
-            <div class="ccc-in">转让</div>
+            <div class="ccc-in js-gozr">转让</div>
         </div>
     </div>
     <!-- 转让用户 end -->
 
     <!-- 转让用户确认 -->
-    <div class="jhm-wrap common-client-wrap hide">
+    <div class="jhm-wrap common-client-wrap js-zryh-sure js-zrwindow hide">
         <div class="cc-big-note">
-            <div class="ccb-t">是否转让<span>5</span>个激活码给</div>
-            <div class="ccb-d">灰色的(15566655423)</div>
+            <div class="ccb-t">是否转让<span class="js-ccf2-num">5</span>个激活码给</div>
+            <div class="ccb-d js-ccf2-tel"></div>
         </div>
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
-            <div class="ccc-out">是</div>
-            <div class="ccc-in">否</div>
+            <div class="ccc-out js-zrdone">是</div>
+            <div class="ccc-in js-cc-close">否</div>
         </div>
     </div>
     <!-- 转让用户确认 end -->
@@ -241,7 +254,7 @@
             <div class="ccc-value">可卖出654321</div>
             <input class="ccf-input" type="text" placeholder="输入交易数量" />
         </div>
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
             <div class="ccc-in">购入</div>
             <div class="ccc-out">卖出</div>
@@ -252,7 +265,7 @@
     <!-- 粉丝列表 -->
     <div class="fans-list common-client-wrap hide">
         <div class="cc-title">粉丝列表</div>
-        <div class="cc-close">×</div>
+        <div class="cc-close js-cc-close">×</div>
         <div class="cc-fans-nav">
             <div class="fn-unit cur">全部</div>
             <div class="fn-unit">粉丝</div>

@@ -10,6 +10,7 @@ var app = {
     smsTimer: null,
     waiting: new legoWaitng("请稍后.", "extraClass"),
     curSelectArea: null,
+    userinfo: null,
     legoToast: new LegoToast({
         msg        : "操作成功",
         time       : 1200,
@@ -32,10 +33,12 @@ var app = {
         util.ajaxFun('/app/main/getUserInfo',{
         }).done((jdata)=>{
             if(jdata.code == 0){
+                self.userinfo = jdata.data;
                 $('.js-login-wrap,.js-reg-wrap').addClass('hide');
                 $('.js-main-view').removeClass('hide');
                 $('.js-jb-show').html(jdata.data.jb);
                 $('.js-user-name').html(jdata.data.nick || '还没名字');
+                $('.js-activation_code_num').html(jdata.data.activation_code_num);
                 jdata.data.headimgurl && $('.js-user-avatar').attr('src',jdata.data.headimgurl)
                 self.getUserLands();
             }else{
@@ -60,7 +63,13 @@ var app = {
             id: self.curSelectArea.attr('land_id'),
             type: selectbuildtype
         }).done((jdata)=>{
-
+            if(jdata.code == 0){
+                self.getUserLands();
+                self.windowToast('购买完成');
+            } else if (jdata.code == 1002) {
+                $('.js-activation_code_num').html(self.userinfo.activation_code_num);
+                $('.js-my-jhm').removeClass('hide');
+            }
         })
     },
     /** 获取土地 */
@@ -198,7 +207,21 @@ var app = {
         /**选地建筑逻辑 */
         $('.js-area-wrap').on('click', '.area-unit', function(){
             self.curSelectArea = $(this);
-            $('.select-build-wrap').removeClass('hide');
+            if($(this).attr('build_type') == 0){
+                
+                $('.select-build-wrap').removeClass('hide');
+            }else{
+                $('.js-destory-building').removeClass('hide');
+                $('.js-bcj').html('---');
+                util.ajaxFun('/app/main/getLandInfo',{
+                    land_id:  self.curSelectArea.attr('land_id')
+                }).done((jdata)=>{
+                    if(jdata.code==0){
+                        $('.js-bcj').html(jdata.data.sell_price);
+                        $('.js-db-sure').attr('land_id',jdata.data.land_id);
+                    }
+                })
+            }
         });
         $('.js-sb-list > li').on('click', function(){
             $('.js-sb-list > .cur').removeClass('cur');
@@ -213,6 +236,18 @@ var app = {
             self.buildMap($('.js-sb-list > .cur').data('type'));
             $('.select-build-wrap').addClass('hide');
         });
+        /** 拆迁 */
+        $('.js-db-sure').on('click', function(){
+            util.ajaxPost('/app/main/sellLand',{
+                land_id: $('.js-db-sure').attr('land_id')
+            }).done((jdata)=>{
+                if(jdata.code == 0){
+                    self.getUserLands();
+                    self.windowToast('拆迁完成');
+                    $('.js-destory-building').addClass('hide');
+                }
+            })
+        })
         /** 登录 */
         $('.js-login-bt').on('click', function(){
             self.logindone();
@@ -241,7 +276,11 @@ var app = {
         $('.js-go-qr-view').on('click', function(){
             $('.js-qr-view').removeClass('hide');
             util.ajaxFun('/app/main/getQRCode',{}).done((jdata)=>{
-
+                if(jdata.code == 0){
+                    $('.js-main-qr').attr({
+                        src: jdata.data.qrcode_base64
+                    })
+                }
             })
         })
         
@@ -255,6 +294,91 @@ var app = {
             util.ajaxFun('/app/main/logout',{});
             $('.js-login-wrap').removeClass('hide');
             $('.js-main-view').addClass('hide');
+        })
+        /** 激活按钮 */
+        $('.js-active').on('click', function(){
+            $('.js-activation_code_num').html(self.userinfo.activation_code_num);
+            $('.js-my-jhm').removeClass('hide');
+        });
+
+        /** 激活 */
+        $('.js-my-jhm').on('click','.ccc-out',function(){
+            if(self.userinfo.activation_code_num < 1 ){
+                self.windowToast('你没有激活码');
+                return;
+            }
+            if(self.userinfo.is_activated != 0){
+                self.windowToast('你已激活');
+            }else{
+                // 激活
+                util.ajaxPost('/app/main/activateAccount',{
+
+                }).done((jdata)=>{
+                    if(jdata.code == 0){
+                        $('.js-my-jhm').addClass('hide');
+                        $('.js-jhcg').removeClass('hide');
+                    }
+                })
+            }
+        })
+
+        /** 转赠 */
+        $('.js-my-jhm').on('click','.ccc-in',function(){
+            if(self.userinfo.activation_code_num < 1 ){
+                self.windowToast('你没有激活码');
+                return;
+            }
+            $('.js-zryh-s1').removeClass('hide');
+        });
+        /** 转赠确认 */
+        $('.js-zryh-s1').on('click', '.js-gozr', function(){
+            if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val())){
+                self.windowToast('请输入正确手机号');
+                return;
+            }
+            if(isNaN($('.js-ccf-num').val())){
+                self.windowToast('请输入正确数量');
+                return;
+            }
+            $('.js-ccf2-num').html($('.js-ccf-num').val());
+            $('.js-ccf2-tel').html($('.js-ccf-tel').val());
+            $('.js-zryh-sure').removeClass('hide');
+        });
+        /** 转赠完成 */
+        $('.js-zrdone').on('click', function(){
+            if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val())){
+                self.windowToast('请输入正确手机号');
+                return;
+            }
+            if(isNaN($('.js-ccf-num').val())){
+                self.windowToast('请输入正确数量');
+                return;
+            }
+            util.ajaxPost('/app/main/transferActivationCode',{
+                mobile: $('.js-ccf-tel').val(),
+                num: $('.js-ccf-num').val()
+            }).done((jdata)=>{
+                if(jdata.code == 0){
+                    self.userinfo.activation_code_num -= Number($('.js-ccf-num').val());
+                    self.windowToast('转赠成功');
+                    $('.js-activation_code_num').html(self.userinfo.activation_code_num);
+                    $('.js-zrwindow').addClass('hide');
+                }
+            })
+        });
+
+
+        $('.js-main-qr').on('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        $('.js-qr-view').on('click', function(){
+            $('.js-qr-view').addClass('hide');
+            $('.js-main-view').removeClass('hide');
+        })
+        /** 通用关闭父弹窗 */
+        $('.js-cc-close').on('click', function(){
+            $(this).parents('.common-client-wrap').addClass('hide');
         })
     }
 }
