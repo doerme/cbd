@@ -7,8 +7,22 @@
     background: #4ac1e3;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    .user-shouzu-bt{
+        position: fixed;
+        width: rem(174);
+        height: rem(68);
+        right: rem(28);
+        bottom: rem(28);
+    }
+    .user-switch{
+        position: fixed;
+        width: rem(94);
+        height: rem(154);
+        left: rem(26);
+        top: rem(128);
+    }
     .userinfo-wrap{
-        position: absolute;
+        position: fixed;
         width: rem(730);
         height: rem(100);
         top: rem(10);
@@ -24,6 +38,13 @@
             background: #000;
             opacity: 0.8;
             border-radius: rem(50);
+        }
+        .click-light{
+            position: absolute;
+            width: rem(27);
+            height: rem(41);
+            left: rem(352);
+            top: rem(30);
         }
         .user-avatar{
             position: absolute;
@@ -51,7 +72,7 @@
             color: #ffc000;
             left: rem(100);
             top: rem(55);
-            background: #000 url('../img/page/coin.png') no-repeat rem(1) rem(1);
+            background: #000 url('../img/page/coin.png') no-repeat rem(1) rem(3);
             background-size: rem(30) rem(30);
             border-radius: rem(10);
             overflow: hidden;
@@ -60,8 +81,8 @@
             position: absolute;
             width: rem(38);
             height: rem(22);
-            top: rem(65);
-            left: rem(280);
+            top: rem(60);
+            left: rem(268);
         }
         .qrcode{
             position: absolute;

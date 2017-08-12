@@ -24,6 +24,40 @@ body {
     }
 }
 
+.select-build-wrap{
+    position: absolute;
+    top: rem(200);
+    width: rem(620);
+    height: rem(770);
+    left: 50%;
+    margin-left: rem(-310);
+    .sb-title{
+        position: absolute;
+        height: rem(100);
+        line-height: rem(100);
+        text-align: center;
+        width: 100%;
+        left: 0;
+        top: 0;
+        font-size: rem(36);
+        color: #FFF;
+    }
+    .sb-list{
+
+    }
+    &::before{
+        position: absolute;
+        content: '';
+        background: rgba(0, 0, 0, 0.8);
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: rem(4) solid #FFF;
+        border-radius: rem(20);
+    }
+}
+
 .hide{
     display: none;
     opacity: 0;
@@ -49,6 +83,34 @@ body {
             height: rem(215);
             background: url('../img/page/cbd/null_area.png') no-repeat;
             background-size: 100% auto;
+            .shop{
+                position: absolute;
+                width: 60%;
+                &.t4s{
+                    top: -20%;
+                    left: 20%;
+                }
+                &.t71{
+                    top: -25%;
+                    left: 25%;
+                }
+                &.tcs{
+                    top: -5%;
+                    left: 25%;
+                }
+                &.thg{
+                    top: -35%;
+                    left: 25%;
+                }
+                &.tmv{
+                    top: -40%;
+                    left: 25%;
+                }
+            }
+            &.build{
+                background: url('../img/page/cbd/fill_area.png') no-repeat;
+                background-size: 100% auto;
+            }
             &:nth-child(1){
                 top: rem(53);
                 left: rem(204);
