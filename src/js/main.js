@@ -134,11 +134,10 @@ var app = {
     },
     /** 完成登录 */
     logindone: function(){
-        
-        var self = this;
-        window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
-        self.gameviewInit();
-        return;
+        // var self = this;
+        // window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
+        // self.gameviewInit();
+        // return;
         if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-login-mob').val())){
             self.windowToast('请输入正确手机号');
             return;
@@ -230,6 +229,34 @@ var app = {
     },
     bindEven: function(){
         var self = this;
+        /** 购入金币弹窗 */
+        $('.js-jiaoyi-in').on('click', ()=>{
+            $('.js-jiaoyi-center').removeClass('hide').find('.ccc-value').addClass('hide');
+            $('.js-jiaoyi-numout').addClass('hide');
+            $('.js-jiaoyi-numin').removeClass('hide');
+        });
+        /** 购入金币 */
+        $('.js-jiaoyi-numin').on('click', ()=>{
+            if(!$('.js-jiaoyi-num').val() || isNaN($('.js-jiaoyi-num').val())){
+                self.windowToast('请输入购买数量');
+                return;
+            }
+            window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
+        });
+        /** 卖出金币弹窗 */
+        $('.js-jiaoyi-out').on('click', ()=>{
+            $('.js-jiaoyi-center').removeClass('hide').find('.ccc-value').removeClass('hide');
+            $('.js-jiaoyi-numout').removeClass('hide');
+            $('.js-jiaoyi-numin').addClass('hide');
+        });
+        /** 卖出金币 */
+        $('.js-jiaoyi-numout').on('click', ()=>{
+            if(!$('.js-jiaoyi-num').val() || isNaN($('.js-jiaoyi-num').val())){
+                self.windowToast('请输入购买数量');
+                return;
+            }
+            window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=2&jb=${$('.js-jiaoyi-num').val()}`;
+        });
         /** 显示交易列表 */
         $('.js-go-jiaoyi').on('click', ()=>{
             self.getSalesRecord();
