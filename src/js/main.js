@@ -131,7 +131,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        if(!/tcpan/.test(window.location.href)){
+        if(!/com/.test(window.location.href)){
             window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
             self.gameviewInit();
             return;
