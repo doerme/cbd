@@ -33,6 +33,15 @@ body {
         }
     }
 }
+.user-shouzu-add{
+    position: fixed;
+    right: rem(38);
+    bottom: rem(100);
+    font-size: rem(30);
+    color: #ffc000;
+    font-weight: bold;
+    text-shadow: rem(3) rem(3) rem(3) #FFF;
+}
 
 .select-build-wrap{
     position: absolute;
@@ -231,4 +240,19 @@ body {
         background: url('../img/page/cbd/street-block.jpg') repeat-y;
         background-size: 100% auto; 
     }
+}
+
+
+.pt-page-moveToTopFade {
+	-webkit-animation: moveToTopFade 1.8s ease both;
+	animation: moveToTopFade 1.8s ease both;
+}
+
+@-webkit-keyframes moveToTopFade {
+	from { }
+	to { opacity: 0.0; -webkit-transform: translateY(-200%); }
+}
+@keyframes moveToTopFade {
+	from { }
+	to { opacity: 0.0; -webkit-transform: translateY(-200%); transform: translateY(-200%); }
 }

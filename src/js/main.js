@@ -3,7 +3,9 @@ import LegoToast from './legolib/lego-toast/0.0.1/legoToast.min.js';
 import util from './lib/util.js';
 $('.js-loading-line').addClass('full');
 var pageTpl = {
-    maparea: require('./tpl/maparea.tpl')
+    maparea: require('./tpl/maparea.tpl'),
+    fanlist: require('./tpl/fanlist.tpl'),
+    salelist: require('./tpl/salelist.tpl')
 };
 
 var app = {
@@ -89,6 +91,16 @@ var app = {
                 console.log('newArr', newArr);
                 $('.js-area-wrap').html(pageTpl.maparea({
                     dataarr: newArr
+                }));
+            }
+        })
+    },
+    /** 获取交易记录 */
+    getSalesRecord: function(){
+        util.ajaxFun('/app/main/getSalesRecord',{}).done((jdata)=>{
+            if(jdata.code == 0){
+                $('.js-cc-list').html(pageTpl.salelist({
+                    data: jdata.data.orders
                 }));
             }
         })
@@ -202,8 +214,27 @@ var app = {
         })
 
     },
+    /** 获取粉丝列表 */
+    getUserFansList: function(listtype){
+        $('.js-fanlist-wrap').html('');
+        util.ajaxFun('/app/main/getUserFans',{
+            type: listtype,
+            page: 1,
+        }).done((jdata)=>{
+            if(jdata.code == 0){
+                $('.js-fanlist-wrap').html(pageTpl.fanlist({
+                    data: jdata.data.fans
+                }))
+            }
+        })
+    },
     bindEven: function(){
         var self = this;
+        /** 显示交易列表 */
+        $('.js-go-jiaoyi').on('click', ()=>{
+            self.getSalesRecord();
+            $('.js-jiaoyi-window').removeClass('hide');
+        });
         /**选地建筑逻辑 */
         $('.js-area-wrap').on('click', '.area-unit', function(){
             self.curSelectArea = $(this);
@@ -365,6 +396,32 @@ var app = {
                     $('.js-zrwindow').addClass('hide');
                 }
             })
+        });
+        /** 收租 */
+        $('.js-user-shouzu-bt').on('click', function(){
+            util.ajaxFun('/app/main/getIncome',{}).done((jdata)=>{
+                if(jdata.code == 0){
+                    self.windowToast(jdata.msg);
+                    $('.js-shouzu-add').html('+'+jdata.data.jb).removeClass('hide');
+                    $('.js-jb-show').html(jdata.data.left_jb);
+                    setTimeout(()=>{
+                        $('.js-shouzu-add').addClass('hide');
+                    }, 4000);
+                }
+            })
+        });
+
+        /** 显示粉丝列表 */
+        $('.js-user-fans').on('click', function(){
+            self.getUserFansList($('.js-cc-fans-nav > .cur').data('type'));
+            $('.js-myfriend-list').removeClass('hide');
+        });
+
+        /** 粉丝列表切换 */
+        $('.js-cc-fans-nav > .fn-unit').on('click', function(){
+            $('.js-cc-fans-nav > .cur').removeClass('cur');
+            $(this).addClass('cur');
+            self.getUserFansList($('.js-cc-fans-nav > .cur').data('type'));
         });
 
 

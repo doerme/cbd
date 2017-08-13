@@ -13,7 +13,7 @@
     }
     .fan-list-wrap{
         width: 100%;
-        height: rem(600);
+        height: rem(680);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         li{
@@ -139,9 +139,12 @@
             border-bottom: rem(2) solid #ededed;
             .desc{
                 display: inline-block;
-                width: rem(320);
+                width: rem(330);
                 overflow: hidden;
                 text-indent: rem(30);
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
             .num{
                 top: 0;

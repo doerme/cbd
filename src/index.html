@@ -93,14 +93,15 @@
             <img class="user-avatar js-user-avatar" src="./img/page/head_eg.png" alt="">
             <div class="user-name js-user-name">---</div>
             <div class="user-gold-wrap js-jb-show">---</div>
-            <img class="gold-plus" src="./img/page/add.png" />
+            <img class="gold-plus js-go-jiaoyi" src="./img/page/add.png" />
             <img class="click-light js-active" src="./img/page/light.png" />
             <img class="qrcode js-go-qr-view" src="./img/page/qrcode.png" />
-            <img class="package" src="./img/page/qianbao.png" />
-            <img class="user-fans" src="./img/page/fans.png" />
+            <img class="package js-go-jiaoyi" src="./img/page/qianbao.png" />
+            <img class="user-fans js-user-fans" src="./img/page/fans.png" />
         </div>
         <img class="user-switch js-user-switch" src="./img/page/switch.png" />
-        <img class="user-shouzu-bt" src="./img/page/shouzu-bt.png" />
+        <img class="user-shouzu-bt js-user-shouzu-bt" src="./img/page/shouzu-bt.png" />
+        <div class="user-shouzu-add js-shouzu-add pt-page-moveToTopFade hide"></div>
     </div>
     <!-- main-view end -->
 
@@ -159,27 +160,19 @@
     <!-- qrcode page end -->
 
     <!-- 交易弹窗 -->
-    <div class="coin-center-wrap common-client-wrap hide">
+    <div class="coin-center-wrap common-client-wrap js-jiaoyi-window hide">
         <div class="cc-title">装备交易中心</div>
         <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
             <div class="ccc-title">我的金币</div>
-            <div class="ccc-value">123456</div>
-            <div class="ccc-out">出售</div>
-            <div class="ccc-in">购入</div>
+            <div class="ccc-value js-jb-show">---</div>
+            <div class="ccc-out js-jiaoyi-out">出售</div>
+            <div class="ccc-in js-jiaoyi-in">购入</div>
         </div>
         <div class="cc-list">
-            <ul>
-                <li>
-                    <span class="desc">卖出</span>
-                    <span class="num green">-300</span>
-                    <span class="state gray">等待中</span>
-                </li>
-                <li>
-                    <span class="desc">买入</span>
-                    <span class="num red">+1000</span>
-                    <span class="state yellow">完成</span>
-                </li>
+            <ul class="js-cc-list">
+
+                
             </ul>
         </div>
     </div>
@@ -263,25 +256,16 @@
     <!-- in out window end -->
 
     <!-- 粉丝列表 -->
-    <div class="fans-list common-client-wrap hide">
+    <div class="fans-list common-client-wrap js-myfriend-list hide">
         <div class="cc-title">粉丝列表</div>
         <div class="cc-close js-cc-close">×</div>
-        <div class="cc-fans-nav">
-            <div class="fn-unit cur">全部</div>
-            <div class="fn-unit">粉丝</div>
-            <div class="fn-unit">VIP</div>
+        <div class="cc-fans-nav js-cc-fans-nav">
+            <div class="fn-unit cur" data-type="1">全部</div>
+            <div class="fn-unit" data-type="2">粉丝</div>
+            <div class="fn-unit" data-type="3">VIP</div>
         </div>
-        <ul class="fan-list-wrap">
-            <li>
-                <img class="fl-avatar" src="./img/page/head_eg.png" alt="">
-                <div class="fl-name">bilibanaT T</div>
-                <div class="fl-vip"></div>
-            </li>
-            <li>
-                <img class="fl-avatar" src="./img/page/head_eg.png" alt="">
-                <div class="fl-name">bilibanaT T</div>
-                <div class="fl-vip">VIP</div>
-            </li>
+        <ul class="fan-list-wrap js-fanlist-wrap">
+            
         </ul>
     </div>
     <!-- 粉丝列表 end -->
