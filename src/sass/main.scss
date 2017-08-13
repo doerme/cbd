@@ -23,6 +23,9 @@ $font_size : 75;
     pointer-events: none;
 }
 
+div.legoToast-inner{
+    height: auto;
+}
 body {
     font: $b-font-weight #{$b-font-size}/#{$b-line-height} $b-font-family;
     color: $c-text;

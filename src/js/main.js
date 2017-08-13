@@ -16,20 +16,13 @@ var app = {
     waiting: new legoWaitng("请稍后.", "extraClass"),
     curSelectArea: null,
     userinfo: null,
-    legoToast: new LegoToast({
-        msg        : "操作成功",
-        time       : 1200,
-        extraclass : "extraclass"
-    }),
-    windowToast: function(msg, mtime){
-        this.legoToast.changeText(msg || 'toast'); // 修改文案
-        this.legoToast.changeTime(mtime || 1200); // 修改消失时间
-        this.legoToast.open(); // 再次打开
-    },
     init: function(){
         var self = this;
         $('.js-loading-wrap').addClass('hide');
         $('.js-login-wrap').removeClass('hide');
+        if(util.getCookie('ci_session')){
+            self.gameviewInit();
+        }
         self.bindEven();
     },
     gameviewInit: function(){
@@ -57,11 +50,11 @@ var app = {
     buildMap: function(selectbuildtype){
         var self = this;
         if(!self.curSelectArea.attr('land_id')){
-            self.windowToast('请先选择土地');
+            util.windowToast('请先选择土地');
             return;
         }
         if(isNaN(selectbuildtype)){
-            self.windowToast('请先选择建筑类型');
+            util.windowToast('请先选择建筑类型');
             return;
         }
         util.ajaxPost('/app/main/buyLand',{
@@ -70,7 +63,7 @@ var app = {
         }).done((jdata)=>{
             if(jdata.code == 0){
                 self.getUserLands();
-                self.windowToast('购买完成');
+                util.windowToast('购买完成');
             } else if (jdata.code == 1002) {
                 $('.js-activation_code_num').html(self.userinfo.activation_code_num);
                 $('.js-my-jhm').removeClass('hide');
@@ -112,15 +105,15 @@ var app = {
     regdone: function(){
         var self = this;
         if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-mobile').val())){
-            self.windowToast('请输入正确手机号');
+            util.windowToast('请输入正确手机号');
             return;
         }
         if($('.js-sms-code').val().length < 4){
-            self.windowToast('请输入短信验证码');
+            util.windowToast('请输入短信验证码');
             return;
         }
         if($('.js-reg-pwd').val().length < 4){
-            self.windowToast('请输入密码');
+            util.windowToast('请输入密码');
             return;
         }
         util.ajaxPost('/app/main/register',{
@@ -129,7 +122,7 @@ var app = {
             password: $('.js-reg-pwd').val()
         }).done((jdata)=>{
             if(jdata.code == 0){
-                self.windowToast('完成注册');
+                util.windowToast('完成注册');
                 gameviewInit();
             }
         })
@@ -137,16 +130,18 @@ var app = {
     },
     /** 完成登录 */
     logindone: function(){
-        // var self = this;
-        // window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
-        // self.gameviewInit();
-        // return;
+        var self = this;
+        if(!/tcpan/.test(window.location.href)){
+            window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
+            self.gameviewInit();
+            return;
+        }
         if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-login-mob').val())){
-            self.windowToast('请输入正确手机号');
+            util.windowToast('请输入正确手机号');
             return;
         }
         if($('.js-login-pwd').val().length < 4){
-            self.windowToast('请输入密码');
+            util.windowToast('请输入密码');
             return;
         }
         util.ajaxPost('/app/main/login',{
@@ -198,11 +193,11 @@ var app = {
     getSmsCode: function(){
         var self = this;
         if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-mobile').val())){
-            self.windowToast('请输入正确手机号');
+            util.windowToast('请输入正确手机号');
             return;
         }
         if($('.js-checkcodeval').val().length < 4){
-            self.windowToast('请输入图形验证码');
+            util.windowToast('请输入图形验证码');
             return;
         }
         window.localStorage.setItem('smstimeout', new Date() * 1);
@@ -241,7 +236,7 @@ var app = {
         /** 购入金币 */
         $('.js-jiaoyi-numin').on('click', ()=>{
             if(!$('.js-jiaoyi-num').val() || isNaN($('.js-jiaoyi-num').val())){
-                self.windowToast('请输入购买数量');
+                util.windowToast('请输入购买数量');
                 return;
             }
             window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
@@ -255,7 +250,7 @@ var app = {
         /** 卖出金币 */
         $('.js-jiaoyi-numout').on('click', ()=>{
             if(!$('.js-jiaoyi-num').val() || isNaN($('.js-jiaoyi-num').val())){
-                self.windowToast('请输入购买数量');
+                util.windowToast('请输入购买数量');
                 return;
             }
             window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=2&jb=${$('.js-jiaoyi-num').val()}`;
@@ -304,7 +299,7 @@ var app = {
             }).done((jdata)=>{
                 if(jdata.code == 0){
                     self.getUserLands();
-                    self.windowToast('拆迁完成');
+                    util.windowToast('拆迁完成');
                     $('.js-destory-building').addClass('hide');
                 }
             })
@@ -365,11 +360,11 @@ var app = {
         /** 激活 */
         $('.js-my-jhm').on('click','.ccc-out',function(){
             if(self.userinfo.activation_code_num < 1 ){
-                self.windowToast('你没有激活码');
+                util.windowToast('你没有激活码');
                 return;
             }
             if(self.userinfo.is_activated != 0){
-                self.windowToast('你已激活');
+                util.windowToast('你已激活');
             }else{
                 // 激活
                 util.ajaxPost('/app/main/activateAccount',{
@@ -386,7 +381,7 @@ var app = {
         /** 转赠 */
         $('.js-my-jhm').on('click','.ccc-in',function(){
             if(self.userinfo.activation_code_num < 1 ){
-                self.windowToast('你没有激活码');
+                util.windowToast('你没有激活码');
                 return;
             }
             $('.js-zryh-s1').removeClass('hide');
@@ -394,11 +389,11 @@ var app = {
         /** 转赠确认 */
         $('.js-zryh-s1').on('click', '.js-gozr', function(){
             if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val())){
-                self.windowToast('请输入正确手机号');
+                util.windowToast('请输入正确手机号');
                 return;
             }
             if(isNaN($('.js-ccf-num').val())){
-                self.windowToast('请输入正确数量');
+                util.windowToast('请输入正确数量');
                 return;
             }
             $('.js-ccf2-num').html($('.js-ccf-num').val());
@@ -408,11 +403,11 @@ var app = {
         /** 转赠完成 */
         $('.js-zrdone').on('click', function(){
             if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val())){
-                self.windowToast('请输入正确手机号');
+                util.windowToast('请输入正确手机号');
                 return;
             }
             if(isNaN($('.js-ccf-num').val())){
-                self.windowToast('请输入正确数量');
+                util.windowToast('请输入正确数量');
                 return;
             }
             util.ajaxPost('/app/main/transferActivationCode',{
@@ -421,7 +416,7 @@ var app = {
             }).done((jdata)=>{
                 if(jdata.code == 0){
                     self.userinfo.activation_code_num -= Number($('.js-ccf-num').val());
-                    self.windowToast('转赠成功');
+                    util.windowToast('转赠成功');
                     $('.js-activation_code_num').html(self.userinfo.activation_code_num);
                     $('.js-zrwindow').addClass('hide');
                 }
@@ -431,7 +426,7 @@ var app = {
         $('.js-user-shouzu-bt').on('click', function(){
             util.ajaxFun('/app/main/getIncome',{}).done((jdata)=>{
                 if(jdata.code == 0){
-                    self.windowToast(jdata.msg);
+                    util.windowToast(jdata.msg);
                     $('.js-shouzu-add').html('+'+jdata.data.jb).removeClass('hide');
                     $('.js-jb-show').html(jdata.data.left_jb);
                     setTimeout(()=>{
