@@ -1,7 +1,10 @@
 import legoWaitng from './legolib/lego-waiting/0.0.1/legoWaiting.min.js';
 import LegoToast from './legolib/lego-toast/0.0.1/legoToast.min.js';
 import util from './lib/util.js';
-$('.js-loading-line').addClass('full');
+setTimeout(function() {
+    $('.js-loading-line').addClass('full');
+}, 100);
+
 var pageTpl = {
     maparea: require('./tpl/maparea.tpl'),
     fanlist: require('./tpl/fanlist.tpl'),
@@ -468,5 +471,8 @@ var app = {
 }
 
 window.onload = function(){
-    app.init()
+    setTimeout(()=>{
+        app.init();
+    },800)
+    
 }
