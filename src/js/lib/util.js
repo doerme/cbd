@@ -26,6 +26,8 @@ export default {
             if(jdata.code != 0){
                 self.windowToast(jdata.msg || '操作失败，请重试');
             }
+        }).fail((jdata)=>{
+            self.windowToast(jdata.msg || '操作失败，请重试');
         })
     },
     ajaxPost: function(url, requestData){
@@ -43,7 +45,7 @@ export default {
                 self.windowToast(jdata.msg || '操作失败，请重试');
             }
         }).fail((jdata)=>{
-            
+            self.windowToast(jdata.msg || '操作失败，请重试');
         })
     },
     getURLParam: function(name, url) {
