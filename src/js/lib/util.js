@@ -1,6 +1,6 @@
 import LegoToast from '../legolib/lego-toast/0.0.1/legoToast.min.js';
 export default {
-    apiHost: '//cbd.tcpan.com',
+    apiHost: '//cbd.72work.com',
     legoToast: new LegoToast({
         msg        : "操作成功",
         time       : 1200,

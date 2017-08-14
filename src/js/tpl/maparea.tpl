@@ -5,7 +5,8 @@
         build_type={{v.build_type}} 
         land_id={{v.land_id}} 
         uid={{v.uid}} 
-        class="area-unit">
+        class="area-unit {{if v.build_type > 0}} build {{/if}}"
+        >
             {{if v.build_type == 1}}
             <img class="shop t71" src="//cbd.tcpan.com/mex/cbd/img/page/cbd/shop-71.png"/>
             {{else if  v.build_type == 2}}

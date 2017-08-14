@@ -62,8 +62,8 @@ var app = {
             type: selectbuildtype
         }).done((jdata)=>{
             if(jdata.code == 0){
-                self.getUserLands();
-                util.windowToast('购买完成');
+                self.gameviewInit();
+                util.windowToast('建筑完成');
             } else if (jdata.code == 1002) {
                 $('.js-activation_code_num').html(self.userinfo.activation_code_num);
                 $('.js-my-jhm').removeClass('hide');
@@ -119,7 +119,8 @@ var app = {
         util.ajaxPost('/app/main/register',{
             sms_captcha: $('.js-sms-code').val(),
             mobile: $('.js-mobile').val(),
-            password: $('.js-reg-pwd').val()
+            password: $('.js-reg-pwd').val(),
+            tj_mid: util.getURLParam('tj_mid') || ''
         }).done((jdata)=>{
             if(jdata.code == 0){
                 util.windowToast('完成注册');
@@ -131,8 +132,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        if(!/com/.test(window.location.href)){
-            window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
+        if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
         }
@@ -149,7 +149,7 @@ var app = {
             password: $('.js-login-pwd').val()
         }).done((jdata)=>{
             if(jdata.code == 0){
-                //window.testtoken = jdata.data.token;
+                window.testtoken = jdata.data.token;
                 //window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
                 self.gameviewInit();
                 
@@ -239,7 +239,11 @@ var app = {
                 util.windowToast('请输入购买数量');
                 return;
             }
-            window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
+            util.ajaxFun('/app/main/exchangeCoin', {
+                type: 1,
+                jb: $('.js-jiaoyi-num').val()
+            })
+            //window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
         });
         /** 卖出金币弹窗 */
         $('.js-jiaoyi-out').on('click', ()=>{
@@ -253,7 +257,18 @@ var app = {
                 util.windowToast('请输入购买数量');
                 return;
             }
-            window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=2&jb=${$('.js-jiaoyi-num').val()}`;
+            util.ajaxFun('/app/main/exchangeCoin', {
+                type: 2,
+                jb: $('.js-jiaoyi-num').val()
+            }).done((jdata)=>{
+                if(jdata.code == 0){
+                    util.windowToast('卖出成功');
+                    $('.js-jiaoyi-center').addClass('hide');
+                    self.gameviewInit();
+                    self.getSalesRecord();
+                }
+            })
+            //window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=2&jb=${$('.js-jiaoyi-num').val()}`;
         });
         /** 显示交易列表 */
         $('.js-go-jiaoyi').on('click', ()=>{
@@ -298,7 +313,7 @@ var app = {
                 land_id: $('.js-db-sure').attr('land_id')
             }).done((jdata)=>{
                 if(jdata.code == 0){
-                    self.getUserLands();
+                    self.gameviewInit();
                     util.windowToast('拆迁完成');
                     $('.js-destory-building').addClass('hide');
                 }
@@ -318,6 +333,12 @@ var app = {
             $('.js-reg-wrap').removeClass('hide');
             self.qrcodeInit();
         });
+        if(util.getURLParam('tj_mid')){
+            $('.js-login-wrap').addClass('hide');
+            $('.js-reg-wrap').removeClass('hide');
+            self.qrcodeInit();
+        }
+         
         /** 刷新验证码 */
         $('.js-checkcode').on('click', function(){
             self.qrcodeInit();
