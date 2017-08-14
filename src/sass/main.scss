@@ -46,6 +46,7 @@ body {
     color: #ffc000;
     font-weight: bold;
     text-shadow: rem(3) rem(3) rem(3) #FFF;
+    z-index: 10;
 }
 
 .select-build-wrap{
@@ -165,6 +166,51 @@ body {
         position: relative;
         height: rem(603);
         width: 100%;
+        .carmovedown.topadapt1{
+            z-index: 0;
+            margin-top: rem(-40);
+            margin-left: rem(-440);
+        }
+        .carmovedown.topadapt2{
+            z-index: 2;
+            margin-top: rem(110);
+            margin-left: rem(160);
+        }
+        .carmovetop.topadapt1{
+            z-index: 0;
+            margin-top: rem(-300);
+            margin-left: rem(-50);
+        }
+        .carmovetop.topadapt2{
+            z-index: 2;
+            margin-top: rem(120);
+            margin-left: rem(160);
+        }
+        &:nth-child(2n+1)::after{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: rem(70);
+            pointer-events: none;
+            background: url('../img/decoration/dc_1.png') no-repeat;
+            background-size: 100% auto;
+            z-index: 9;
+
+        }
+        &:nth-child(2n)::after{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: rem(50);
+            pointer-events: none;
+            background: url('../img/decoration/dc_2.png') no-repeat;
+            background-size: 100% auto;
+            z-index: 9;
+        }
         .area-unit{
             position: absolute;
             width: rem(363);
@@ -202,18 +248,22 @@ body {
             &:nth-child(1){
                 top: rem(53);
                 left: rem(204);
+                z-index: 1;
             }
             &:nth-child(2){
                 top: rem(180);
                 left: rem(420);
+                z-index: 1;
             }
             &:nth-child(3){
                 top: rem(200);
                 left: rem(-35);
+                z-index: 3;
             }
             &:nth-child(4){
                 top: rem(320);
                 left: rem(183);
+                z-index: 3;
             }
         }
     }
@@ -246,6 +296,119 @@ body {
         background-size: 100% auto; 
     }
 }
+
+.topdown-wrap{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: rem(200);
+    height: rem(200);
+    .car{
+        left: 0;
+        top: 0;
+    }
+    .car-ld1{
+        position: absolute;
+        width: rem(93);
+        height: rem(79);
+    }
+    .car-lt1{
+        position: absolute;
+        width: rem(123);
+        height: rem(74);
+    }
+    .car-lt2{
+        position: absolute;
+        width: rem(91);
+        height: rem(68);
+    }
+    .car-rd1{
+        position: absolute;
+        width: rem(97);
+        height: rem(80);
+    }
+    .car-rt1{
+        position: absolute;
+        width: rem(79);
+        height: rem(57);
+    }
+    .car-rt2{
+        position: absolute;
+        width: rem(86);
+        height: rem(71);
+    }
+    .car-rt3{
+        position: absolute;
+        width: rem(93);
+        height: rem(67);
+    }
+    
+}
+
+.carmovedown{
+    animation:carmovetodown 16s infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+}
+
+@keyframes carmovetodown {
+    0% {top: rem(0);opacity: 0;}
+	1% { top: rem(0);opacity: 1; }
+    50% { top: rem(500);opacity: 1;}
+    100% { top: rem(500); opacity: 0;}
+}
+
+.carmoveright{
+    animation:carmovetoright 16s infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+}
+
+@keyframes carmovetoright {
+    0% { left: rem(-50);opacity: 0;  }
+	1% { left: rem(-50);opacity: 1; }
+    50% { left: rem(800);opacity: 1; }
+    100% { left: rem(800);opacity: 0; }
+}
+
+.carmovetop{
+    animation:carmovetotop 16s infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+}
+
+@keyframes carmovetotop {
+    0% { top: rem(500);opacity: 0;  }
+	1% { top: rem(500); opacity: 1;}
+    50% { top: rem(0);opacity: 1;}
+    100% { top: rem(0);opacity: 0;}
+}
+
+.carmoveleft{
+    animation:carmovetoleft 16s infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+}
+
+@keyframes carmovetoleft {
+    0% { left: rem(800); opacity: 0; }
+    1% { left: rem(800); opacity: 1;}
+    50% { left: rem(-50); opacity: 1;}
+    100% { left: rem(-50);opacity: 0; }
+}
+
+.pt-delay8{
+    animation-delay:8s;
+}
+
+.pt-delay6{
+    animation-delay:6s;
+}
+
+.pt-delay4{
+    animation-delay:4s;
+}
+
 
 
 .pt-page-moveToTopFade {

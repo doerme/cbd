@@ -13,6 +13,7 @@
         height: rem(68);
         right: rem(28);
         bottom: rem(28);
+        z-index: 10;
     }
     .user-switch{
         position: fixed;
@@ -20,6 +21,7 @@
         height: rem(154);
         left: rem(26);
         top: rem(128);
+        z-index: 10;
     }
     .userinfo-wrap{
         position: fixed;
@@ -28,6 +30,7 @@
         top: rem(10);
         left: 50%;
         margin-left: rem(-365);
+        z-index: 10;
         &::before{
             content: '';
             position: absolute;

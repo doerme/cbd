@@ -132,6 +132,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
+        window.testtoken = '482ae271bffbcf41ffe8517a87ec86ae';
         if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
@@ -242,6 +243,10 @@ var app = {
             util.ajaxFun('/app/main/exchangeCoin', {
                 type: 1,
                 jb: $('.js-jiaoyi-num').val()
+            }).done((jdata)=>{
+                if(jdata.code == 0){
+                    window.location.href = jdata.data.pay_url;
+                }
             })
             //window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
         });
@@ -352,11 +357,12 @@ var app = {
         /** 二维码界面 */
         $('.js-go-qr-view').on('click', function(){
             $('.js-qr-view').removeClass('hide');
-            util.ajaxFun('/app/main/getQRCode',{}).done((jdata)=>{
+            util.ajaxFun('/app/main/getQRPng',{}).done((jdata)=>{
                 if(jdata.code == 0){
-                    $('.js-main-qr').attr({
-                        src: jdata.data.qrcode_base64
-                    })
+                    window.location.href = jdata.data.qr_png_url;
+                    // $('.js-main-qr').attr({
+                    //     src: jdata.data.qrcode_base64
+                    // })
                 }
             })
         })
