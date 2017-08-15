@@ -132,7 +132,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        window.testtoken = '6f1c27985b128da50c9a5d3e982d2bc0';
+        window.testtoken = 'd1de108760e7feb423e089d7e9bc546a';
         if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
@@ -356,7 +356,7 @@ var app = {
 
         /** 二维码界面 */
         $('.js-go-qr-view').on('click', function(){
-            $('.js-qr-view').removeClass('hide');
+            //$('.js-qr-view').removeClass('hide');
             util.ajaxFun('/app/main/getQRPng',{}).done((jdata)=>{
                 if(jdata.code == 0){
                     window.location.href = jdata.data.qr_png_url;
@@ -400,6 +400,8 @@ var app = {
                     if(jdata.code == 0){
                         $('.js-my-jhm').addClass('hide');
                         $('.js-jhcg').removeClass('hide');
+                        self.userinfo.activation_code_num --;
+                        $('.js-activation_code_num').html(self.userinfo.activation_code_num);
                     }
                 })
             }
