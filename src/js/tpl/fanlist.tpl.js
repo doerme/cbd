@@ -1,2 +1,2 @@
-/*TMODJS:{"version":36,"md5":"d177302d88c79182d5ea0e9c9643c517"}*/
+/*TMODJS:{"version":37,"md5":"d177302d88c79182d5ea0e9c9643c517"}*/
 template("E:/wamp/www/Jeremy/2017xiyou/cbd/dev/src/js/tpl/fanlist",function(a){"use strict";var b=this,c=(b.$helpers,b.$each),d=a.data,e=(a.v,a.i,b.$escape),f="";return c(d,function(a){f+=' <li> <img class="fl-avatar" src="',f+=e(a.headimgurl),f+='" alt=""> <div class="fl-name">',f+=e(a.nickname),f+="</div> ",1==a.is_vip&&(f+=' <div class="fl-vip"></div> '),f+=" </li> "}),new String(f)});

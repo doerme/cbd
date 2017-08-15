@@ -37,7 +37,10 @@ var app = {
                 $('.js-jb-show').html(jdata.data.jb);
                 $('.js-user-name').html(jdata.data.nick || '还没名字');
                 $('.js-activation_code_num').html(jdata.data.activation_code_num);
-                jdata.data.headimgurl && $('.js-user-avatar').attr('src',jdata.data.headimgurl)
+                jdata.data.headimgurl && $('.js-user-avatar').attr('src',jdata.data.headimgurl);
+                if(jdata.data.is_activated == 1){
+                    $('.js-my-jhm').find('.ccc-out').html('已激活').addClass('gray');
+                }
                 self.getUserLands();
             }else{
                 $('.js-login-wrap').removeClass('hide');

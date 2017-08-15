@@ -1,2 +1,2 @@
-/*TMODJS:{"version":33,"md5":"c83020c99f2ced1e2742d2d4576e6166"}*/
+/*TMODJS:{"version":34,"md5":"c83020c99f2ced1e2742d2d4576e6166"}*/
 template("E:/wamp/www/Jeremy/2017xiyou/cbd/dev/src/js/tpl/salelist",function(a){"use strict";var b=this,c=(b.$helpers,b.$each),d=a.data,e=(a.v,a.i,b.$escape),f="";return c(d,function(a){f+=' <li> <span class="desc">',f+=e(a.content),f+="</span> ",a.type>0?(f+=' <span class="num red">+',f+=e(a.je),f+="</span> "):(f+=' <span class="num green">-',f+=e(a.je),f+="</span> "),f+=' <span class="state yellow">',f+=e(a.state),f+="</span> </li> "}),new String(f)});

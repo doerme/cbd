@@ -212,6 +212,10 @@
             color: #333;
             background: #ffc100;
             border-radius: rem(30);
+            &.gray{
+                background: #e3decf;
+                pointer-events: none;
+            }
         }
         .ccc-in{
             display: inline-block;
