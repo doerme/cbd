@@ -56,6 +56,9 @@ body {
     height: rem(770);
     left: 50%;
     margin-left: rem(-310);
+    z-index: 11;
+    -webkit-animation: bounceInDown 1s ease both;
+	animation: bounceInDown 1s ease both;
     .sb-title{
         position: absolute;
         height: rem(100);
@@ -166,6 +169,16 @@ body {
         position: relative;
         height: rem(603);
         width: 100%;
+        .street-block-add{
+            position: absolute;
+            background: url('../img/page/cbd/street-block-add.png') no-repeat;
+            background-size: rem(260) rem(207);
+            width: rem(260);
+            height: rem(207);
+            right: rem(-12);
+            top: rem(440);
+            z-index: 8;
+        }
         .carmovedown.topadapt1{
             z-index: 0;
             margin-top: rem(-40);
@@ -244,6 +257,8 @@ body {
             &.build{
                 background: url('../img/page/cbd/fill_area.png') no-repeat;
                 background-size: 100% auto;
+                -webkit-animation: bounceInDown 1s ease both;
+	            animation: bounceInDown 1s ease both;
             }
             &:nth-child(1){
                 top: rem(53);

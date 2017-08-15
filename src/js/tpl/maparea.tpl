@@ -35,5 +35,6 @@
         <img class="car-rd1 car carmoveleft" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-lt2.png" alt="">
     </div>
     {{/if}}
+    <div class="street-block-add"></div>
 </div>
 {{/each}}
