@@ -1,2 +1,2 @@
-/*TMODJS:{"version":37,"md5":"d177302d88c79182d5ea0e9c9643c517"}*/
-template("E:/wamp/www/Jeremy/2017xiyou/cbd/dev/src/js/tpl/fanlist",function(a){"use strict";var b=this,c=(b.$helpers,b.$each),d=a.data,e=(a.v,a.i,b.$escape),f="";return c(d,function(a){f+=' <li> <img class="fl-avatar" src="',f+=e(a.headimgurl),f+='" alt=""> <div class="fl-name">',f+=e(a.nickname),f+="</div> ",1==a.is_vip&&(f+=' <div class="fl-vip"></div> '),f+=" </li> "}),new String(f)});
+/*TMODJS:{"version":41,"md5":"2489797540c510d18c2bab1f390b7ddd"}*/
+template("/Users/xiaominghari/Documents/wanrenqun/cbd/cbd/src/js/tpl/fanlist",function(a){"use strict";var b=this,c=(b.$helpers,b.$each),d=a.data,e=(a.v,a.i,b.$escape),f="";return c(d,function(a){f+=' <li> <img class="fl-avatar" src="',f+=e(a.headimgurl),f+='" alt=""> <div class="fl-name">',f+=e(a.nickname||"\u8fd8\u6ca1\u540d\u5b57"),f+="</div> ",1==a.is_vip&&(f+=' <div class="fl-vip">VIP</div> '),f+=" </li> "}),new String(f)});
