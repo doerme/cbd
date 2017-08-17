@@ -233,7 +233,7 @@ var app = {
     bindEven: function(){
         var self = this;
         /** 提现按钮 */
-        $('body').on('click', '.js-jiaoyi-window', function(){
+        $('.js-jiaoyi-window').on('click', '.js-list-tixian', function(){
             util.windowToast('请稍后');
             window.location.href = $(this).data('txurl');
             // util.ajaxFun('/app/main/draw',{jb_id: $(this).data('jbid')}).done((jdata)=>{
