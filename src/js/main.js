@@ -136,7 +136,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        window.testtoken = 'f0b4467269bf0bbe0eecbcf9ed518b3d';
+        window.testtoken = '62ca846e5021e97102bb0ee7049a463a';
         if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
