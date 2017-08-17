@@ -163,12 +163,14 @@
             }
             .state{
                 position: absolute;
+                display: block;
                 top: rem(26);
                 right: rem(28);
                 width: rem(100);
                 height: rem(43);
                 text-align: center;
                 line-height: rem(43);
+                z-index: 12;
                 &.yellow{
                     color: #a3a3a3;
                     background: #ffd85e;
@@ -176,6 +178,10 @@
                 &.gray{
                     background: #a3a3a3;
                     color: #FFF;
+                }
+                &.tixian{
+                    background: #38cf15;
+                    color: #fff;
                 }
             }
         }

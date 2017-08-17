@@ -25,14 +25,14 @@
         <img class="car-rd1 car carmoveright pt-delay4 " src="//cbd.tcpan.com/mex/cbd/img/decoration/car-rd1.png" alt="">
     </div>
     <div class="topdown-wrap carmovedown topadapt1 pt-delay8">
-        <img class="car-rd1 car carmoveleft pt-delay8" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-ld1.png" alt="">
+        <img class="car-ld1 car carmoveleft pt-delay8" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-ld1.png" alt="">
     </div>
     {{else}}
     <div class="topdown-wrap carmovetop topadapt1 pt-delay6">
-        <img class="car-rd1 car carmoveright pt-delay6" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-rt2.png" alt="">
+        <img class="car-rt{{Math.ceil(irr/2)%3 + 1}} car carmoveright pt-delay6" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-rt{{Math.ceil(irr/2)%3 + 1}}.png" alt="">
     </div>
     <div class="topdown-wrap carmovetop topadapt1">
-        <img class="car-rd1 car carmoveleft" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-lt2.png" alt="">
+        <img class="car-lt{{Math.ceil(irr/2)%2 + 1}} car carmoveleft" src="//cbd.tcpan.com/mex/cbd/img/decoration/car-lt{{Math.ceil(irr/2)%2 + 1}}.png" alt="">
     </div>
     {{/if}}
     <div class="street-block-add"></div>

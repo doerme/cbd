@@ -89,6 +89,7 @@ var app = {
                 });
                 console.log('newArr', newArr);
                 $('.js-area-wrap').html(pageTpl.maparea({
+                    Math: Math,
                     dataarr: newArr
                 }));
             }
@@ -135,7 +136,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        window.testtoken = '525877ab17d11e25ee0078b71db75b82';
+        window.testtoken = 'f0b4467269bf0bbe0eecbcf9ed518b3d';
         if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
@@ -232,12 +233,14 @@ var app = {
     bindEven: function(){
         var self = this;
         /** 提现按钮 */
-        $('.js-list-tixian').on('click', ()=>{
-            util.ajaxFun('/app/main/draw',{jb_id: $(this).data('jb_id')}).done((jdata)=>{
-                if(jdata.code == 0){
-                    
-                }
-            });
+        $('body').on('click', '.js-jiaoyi-window', function(){
+            util.windowToast('请稍后');
+            window.location.href = $(this).data('txurl');
+            // util.ajaxFun('/app/main/draw',{jb_id: $(this).data('jbid')}).done((jdata)=>{
+            //     if(jdata.code == 0){
+
+            //     }
+            // });
         });
         /** 购入金币弹窗 */
         $('.js-jiaoyi-in').on('click', ()=>{
