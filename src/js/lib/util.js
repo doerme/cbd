@@ -1,4 +1,5 @@
 import LegoToast from '../legolib/lego-toast/0.0.1/legoToast.min.js';
+import wechatShare from './wechatShare.js';
 export default {
     apiHost: '//cbd.72work.com',
     legoToast: new LegoToast({
@@ -47,6 +48,9 @@ export default {
         }).fail((jdata)=>{
             self.windowToast(jdata.msg || '操作失败，请重试');
         })
+    },
+    wechatShareInit: function(jdata){
+        wechatShare(jdata);
     },
     getURLParam: function(name, url) {
         var re = new RegExp("[\\?&#]" + name + "=([^&#]+)", "gi");

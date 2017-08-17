@@ -24,6 +24,16 @@ var app = {
             self.gameviewInit();
         }
         self.bindEven();
+        util.wechatShareInit({
+            title: '跟我一起做地产大亨',
+            desc: 'CBD盛大开盘，别再错过这个机遇，下一个地产大亨就是你。',
+            link: window.location.href, /*默认值是当前页面连接*/
+            img:'http://cbd.tcpan.com/mex/cbd/img/page/icon.png',
+            request_share_url: '//cbd.72work.com/common/jsapi?url=' + encodeURIComponent(window.location.href.split('#')[0]), /*默认值是h5.yy.com*/
+            success_callback:function(){},	/*分享成功回调*/
+            cancel_callback:function(){},	/*分享失败回调*/
+            debug:false	/*是否启用调试*/
+        })
     },
     gameviewInit: function(){
         var self = this;
@@ -35,7 +45,7 @@ var app = {
                 $('.js-login-wrap,.js-reg-wrap').addClass('hide');
                 $('.js-main-view').removeClass('hide');
                 $('.js-jb-show').html(jdata.data.jb);
-                $('.js-user-name').html(jdata.data.nick || '还没名字');
+                $('.js-user-name').html(jdata.data.nickname || '还没名字');
                 $('.js-activation_code_num').html(jdata.data.activation_code_num);
                 jdata.data.headimgurl && $('.js-user-avatar').attr('src',jdata.data.headimgurl);
                 if(jdata.data.is_activated == 1){
@@ -136,7 +146,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        window.testtoken = '62ca846e5021e97102bb0ee7049a463a';
+        window.testtoken = 'ced2d75c9bb36c6033d59fd60994977e';
         if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
@@ -156,8 +166,10 @@ var app = {
             if(jdata.code == 0){
                 window.testtoken = jdata.data.token;
                 //window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
+                if(/com/.test(window.location.href)){
+                    window.location.href = 'http://cbd.72work.com/app/ashop/up_member_info';
+                }
                 self.gameviewInit();
-                
             }
         })
     },
