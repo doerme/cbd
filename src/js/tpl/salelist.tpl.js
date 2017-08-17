@@ -1,2 +1,2 @@
-/*TMODJS:{"version":36,"md5":"63747b97e72bf72fb5c995413a552366"}*/
+/*TMODJS:{"version":37,"md5":"63747b97e72bf72fb5c995413a552366"}*/
 template("/Users/xiaominghari/Documents/wanrenqun/cbd/cbd/src/js/tpl/salelist",function(a){"use strict";var b=this,c=(b.$helpers,b.$each),d=a.data,e=(a.v,a.i,b.$escape),f="";return c(d,function(a){f+=' <li> <span class="desc">',f+=e(a.content),f+="</span> ",a.type>0?(f+=' <span class="num red">+',f+=e(a.je),f+="</span> "):(f+=' <span class="num green">-',f+=e(a.je),f+="</span> "),f+=' <span class="state yellow">',f+=e(a.state),f+="</span> </li> "}),new String(f)});

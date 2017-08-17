@@ -231,6 +231,14 @@ var app = {
     },
     bindEven: function(){
         var self = this;
+        /** 提现按钮 */
+        $('.js-list-tixian').on('click', ()=>{
+            util.ajaxFun('/app/main/draw',{jb_id: $(this).data('jb_id')}).done((jdata)=>{
+                if(jdata.code == 0){
+                    
+                }
+            });
+        });
         /** 购入金币弹窗 */
         $('.js-jiaoyi-in').on('click', ()=>{
             $('.js-jiaoyi-center').removeClass('hide').find('.ccc-value').addClass('hide');
