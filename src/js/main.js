@@ -513,7 +513,7 @@ var app = {
 
         /** 显示粉丝列表 */
         $('.js-user-fans').on('click', function(){
-            self.getUserFansList($('.js-cc-fans-nav > .cur').data('type')-1);
+            self.getUserFansList($('.js-cc-fans-nav > .cur').data('type'));
             $('.js-myfriend-list').removeClass('hide');
         });
 
@@ -521,7 +521,7 @@ var app = {
         $('.js-cc-fans-nav > .fn-unit').on('click', function(){
             $('.js-cc-fans-nav > .cur').removeClass('cur');
             $(this).addClass('cur');
-            self.getUserFansList($('.js-cc-fans-nav > .cur').data('type')-1);
+            self.getUserFansList($('.js-cc-fans-nav > .cur').data('type'));
         });
 
 
