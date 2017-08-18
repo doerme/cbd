@@ -56,7 +56,28 @@ var app = {
                 $('.js-login-wrap').removeClass('hide');
                 $('.js-main-view').addClass('hide');
             }
-            
+        });
+    },
+    updateUserInfo: function(){
+        var self = this;
+        /**获取用户信息 */
+        util.ajaxFun('/app/main/getUserInfo',{
+        }).done((jdata)=>{
+            if(jdata.code == 0){
+                self.userinfo = jdata.data;
+                $('.js-login-wrap,.js-reg-wrap').addClass('hide');
+                $('.js-main-view').removeClass('hide');
+                $('.js-jb-show').html(jdata.data.jb);
+                $('.js-user-name').html(jdata.data.nickname || '还没名字');
+                $('.js-activation_code_num').html(jdata.data.activation_code_num);
+                jdata.data.headimgurl && $('.js-user-avatar').attr('src',jdata.data.headimgurl);
+                if(jdata.data.is_activated == 1){
+                    $('.js-my-jhm').find('.ccc-out').html('已激活').addClass('gray');
+                }
+            }else{
+                $('.js-login-wrap').removeClass('hide');
+                $('.js-main-view').addClass('hide');
+            }
         })
     },
     /** 购买房产 */
@@ -78,7 +99,7 @@ var app = {
                 self.gameviewInit();
                 util.windowToast('建筑完成');
             } else if (jdata.code == 1002) {
-                $('.js-activation_code_num').html(self.userinfo.activation_code_num);
+                self.updateUserInfo();
                 $('.js-my-jhm').removeClass('hide');
             }
         })
@@ -295,7 +316,7 @@ var app = {
                 if(jdata.code == 0){
                     util.windowToast('卖出成功');
                     $('.js-jiaoyi-center').addClass('hide');
-                    self.gameviewInit();
+                    self.updateUserInfo();
                     self.getSalesRecord();
                 }
             })
@@ -406,7 +427,7 @@ var app = {
         })
         /** 激活按钮 */
         $('.js-active').on('click', function(){
-            $('.js-activation_code_num').html(self.userinfo.activation_code_num);
+            self.updateUserInfo();
             $('.js-my-jhm').removeClass('hide');
         });
 
@@ -426,8 +447,7 @@ var app = {
                     if(jdata.code == 0){
                         $('.js-my-jhm').addClass('hide');
                         $('.js-jhcg').removeClass('hide');
-                        self.userinfo.activation_code_num --;
-                        $('.js-activation_code_num').html(self.userinfo.activation_code_num);
+                        self.updateUserInfo();
                     }
                 })
             }
@@ -439,6 +459,7 @@ var app = {
                 util.windowToast('你没有激活码');
                 return;
             }
+            self.updateUserInfo();
             $('.js-zryh-s1').removeClass('hide');
         });
         /** 转赠确认 */
@@ -470,9 +491,8 @@ var app = {
                 num: $('.js-ccf-num').val()
             }).done((jdata)=>{
                 if(jdata.code == 0){
-                    self.userinfo.activation_code_num -= Number($('.js-ccf-num').val());
+                    self.updateUserInfo();
                     util.windowToast('转赠成功');
-                    $('.js-activation_code_num').html(self.userinfo.activation_code_num);
                     $('.js-zrwindow').addClass('hide');
                 }
             })
