@@ -1,5 +1,7 @@
 import legoWaitng from './legolib/lego-waiting/0.0.1/legoWaiting.min.js';
 import LegoToast from './legolib/lego-toast/0.0.1/legoToast.min.js';
+import apppay from './lib/apppay.js';
+import testmode from './lib/testmode.js';
 import util from './lib/util.js';
 setTimeout(function() {
     $('.js-loading-line').addClass('full');
@@ -16,13 +18,21 @@ var app = {
     waiting: new legoWaitng("请稍后.", "extraClass"),
     curSelectArea: null,
     userinfo: null,
+    gamemode: /testmode/.test(window.location.href) ? 'test' : 'normal',
     init: function(){
         var self = this;
         $('.js-loading-wrap').addClass('hide');
         $('.js-login-wrap').removeClass('hide');
-        if(util.getCookie('ci_session')){
-            self.gameviewInit();
+        if(self.gamemode == 'test') {
+            testmode.gameviewInit();
+        }else{
+            $.get('/app/api/is_login_tow/',{}).done((jdata)=>{
+                if(jdata.data.login==1){
+                    self.gameviewInit();
+                }
+            })
         }
+        
         self.bindEven();
         util.wechatShareInit({
             title: '跟我一起做地产大亨',
@@ -134,7 +144,7 @@ var app = {
                     data: jdata.data.orders
                 }));
             }
-        })
+        });
     },
     /** 完成注册 */
     regdone: function(){
@@ -167,7 +177,7 @@ var app = {
     /** 完成登录 */
     logindone: function(){
         var self = this;
-        window.testtoken = 'ced2d75c9bb36c6033d59fd60994977e';
+        window.testtoken = '862dc26eff856f42e24037ae8ac6558d';
         if(!/com/.test(window.location.href) && window.testtoken){
             self.gameviewInit();
             return;
@@ -188,7 +198,9 @@ var app = {
                 window.testtoken = jdata.data.token;
                 //window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
                 if(/com/.test(window.location.href)){
-                    window.location.href = 'http://cbd.72work.com/app/ashop/up_member_info';
+                    setTimeout(()=>{
+                        window.location.href = 'http://cbd.72work.com/app/ashop/up_member_info';
+                    }, 2000);
                 }
                 self.gameviewInit();
             }
@@ -252,6 +264,13 @@ var app = {
     /** 获取粉丝列表 */
     getUserFansList: function(listtype){
         $('.js-fanlist-wrap').html('');
+        util.ajaxFun('/app/api/get_fs_tj',{}).done((jdata)=>{
+            if(jdata.code == 0){
+                $('.js-tuan').html(jdata.data.tuan);
+                $('.js-vip').html(jdata.data.vip);
+                $('.js-zyj').html(jdata.data.zyj);
+            }
+        });
         util.ajaxFun('/app/main/getUserFans',{
             type: listtype,
             page: 1,
@@ -287,14 +306,18 @@ var app = {
                 util.windowToast('请输入购买数量');
                 return;
             }
-            util.ajaxFun('/app/main/exchangeCoin', {
-                type: 1,
-                jb: $('.js-jiaoyi-num').val()
-            }).done((jdata)=>{
-                if(jdata.code == 0){
-                    window.location.href = jdata.data.pay_url;
-                }
-            })
+            if(util.is_weixn()){
+                util.ajaxFun('/app/main/exchangeCoin', {
+                    type: 1,
+                    jb: $('.js-jiaoyi-num').val()
+                }).done((jdata)=>{
+                    if(jdata.code == 0){
+                        window.location.href = jdata.data.pay_url;
+                    }
+                })
+            }else{
+                apppay.pay();
+            }
             //window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
         });
         /** 卖出金币弹窗 */
@@ -325,6 +348,7 @@ var app = {
         /** 显示交易列表 */
         $('.js-go-jiaoyi').on('click', ()=>{
             self.getSalesRecord();
+            self.updateUserInfo();
             $('.js-jiaoyi-window').removeClass('hide');
         });
         /**选地建筑逻辑 */

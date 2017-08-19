@@ -31,6 +31,26 @@ export default {
             self.windowToast(jdata.msg || '操作失败，请重试');
         })
     },
+    ajaxGet: function(url, requestData){
+        var self = this;
+        return $.ajax({
+            url: this.apiHost + url,
+            type: 'get',
+            dataType: 'json',
+            timeout: 8000,
+            data: $.extend(requestData,{token: window.testtoken})
+        }).done((jdata)=>{
+            //console.log('global done', jdata);
+            if(jdata.code == -1 || jdata.code == '-1'){
+                self.setCookie('ci_session','');
+            }
+            if(jdata.code != 0){
+                self.windowToast(jdata.msg || '操作失败，请重试');
+            }
+        }).fail((jdata)=>{
+            self.windowToast(jdata.msg || '操作失败，请重试');
+        })
+    },
     ajaxPost: function(url, requestData){
         var self = this;
         return $.ajax({
@@ -88,8 +108,16 @@ export default {
             }
             return "";
         } catch (e) {
-            console.error('getCookie e', e)
+            console.error('getCookie e', e);
             return "";
+        }
+    },
+    is_weixn: function() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
         }
     },
 }
