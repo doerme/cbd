@@ -7,7 +7,17 @@
 http://cbd.72work.com/mex/cbd/img/page/loading.png
 
 /public/mex/cbd
+
 ```
+## 测试地址
+
+```
+http://cbd.72work.com/app/main/test
+
+/public/application/views/main/test.php
+```
+
+
 ## 客户端联调方法
 ```
 webView.registerHandler("wxpay", new BridgeHandler() {

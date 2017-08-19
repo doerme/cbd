@@ -1,7 +1,8 @@
 import util from './util.js';
 export default {
     maparea: require('../tpl/maparea.tpl'),
-    curgold: 0,
+    curgold: 10000,
+    curBuildNum: 0,
     curSelectArea: null,
     areaArr: {
         lands:[
@@ -17,6 +18,7 @@ export default {
     },
     gameviewInit: function(){
         var self = this;
+        document.styleSheets[0].addRule('.main-view div.userinfo-wrap::before','width: 50%');
         $('.js-login-wrap,.js-reg-wrap').addClass('hide');
         $('.js-main-view').removeClass('hide');
         $('.js-jb-show').html(self.curgold);
@@ -48,6 +50,7 @@ export default {
             util.windowToast('金币不足');
             return;
         }
+        curBuildNum ++;
         self.curgold -= gold;
         $('.js-jb-show').html(self.curgold);
         self.areaArr.lands.forEach(function(item, index, array) {
@@ -64,8 +67,8 @@ export default {
         var self = this;
         /** 增加金币 */
         $('.js-user-shouzu-bt').on('click', function(){
-            $('.js-shouzu-add').html('+38').removeClass('hide');
-            self.curgold += 28;
+            $('.js-shouzu-add').html('+' + 28 * self.curBuildNum).removeClass('hide');
+            self.curgold += 28 * self.curBuildNum;
             $('.js-jb-show').html(self.curgold);
             setTimeout(()=>{
                 $('.js-shouzu-add').addClass('hide');

@@ -1,7 +1,23 @@
+import util from './util.js';
 export default {
-    pay: function() {
-        appExec.callHandler('alipay', '2222' , function(rsstring){
-            console.log(rsstring);
-        });
+    pay: function(orderid, cbfun) {
+        $.get({
+            url: `http://cbd.72work.com/app/test/index/${orderid}`
+        }).done((jdata)=>{
+            if(jdata.data.code == 0){
+                appExec.callHandler('alipay', jdata.data.order_string , function(rsstring){
+                    if(rsstring == 1){
+                        cbfun();
+                    }else{
+                        util.windowToast('APP发起支付失败');
+                    }
+                });
+            } else {
+                util.windowToast(jdata.msg);
+            }
+        }).fail(()=>{
+            util.windowToast('获取接口状态异常');
+        })
+        
     }
 }

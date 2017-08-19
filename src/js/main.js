@@ -305,18 +305,20 @@ var app = {
                 util.windowToast('请输入购买数量');
                 return;
             }
-            if(util.is_weixn()){
-                util.ajaxFun('/app/main/exchangeCoin', {
-                    type: 1,
-                    jb: $('.js-jiaoyi-num').val()
-                }).done((jdata)=>{
-                    if(jdata.code == 0){
+            util.ajaxFun('/app/main/exchangeCoin', {
+                type: 1,
+                jb: $('.js-jiaoyi-num').val()
+            }).done((jdata)=>{
+                if(jdata.code == 0){
+                    if(util.is_weixn()){
                         window.location.href = jdata.data.pay_url;
+                    }else{
+                        apppay.pay(jdata.bill_id, function(){
+                            $('.js-jiaoyi-center,.js-jiaoyi-window').addClass('hide');
+                        });
                     }
-                })
-            }else{
-                apppay.pay();
-            }
+                }
+            })
             //window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
         });
         /** 卖出金币弹窗 */
