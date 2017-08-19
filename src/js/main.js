@@ -31,9 +31,8 @@ var app = {
                     self.gameviewInit();
                 }
             })
+            self.bindEven();
         }
-        
-        self.bindEven();
         util.wechatShareInit({
             title: '跟我一起做地产大亨',
             desc: 'CBD盛大开盘，别再错过这个机遇，下一个地产大亨就是你。',
