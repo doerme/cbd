@@ -14,6 +14,8 @@ http://cbd.72work.com/mex/cbd/img/page/loading.png
 ```
 http://cbd.72work.com/app/main/test
 
+/public/mex/testcbd
+
 /public/application/views/main/test.php
 ```
 

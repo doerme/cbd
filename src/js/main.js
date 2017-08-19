@@ -313,7 +313,7 @@ var app = {
                     if(util.is_weixn()){
                         window.location.href = jdata.data.pay_url;
                     }else{
-                        apppay.pay(jdata.bill_id, function(){
+                        apppay.pay(jdata.data.bill_id, function(){
                             $('.js-jiaoyi-center,.js-jiaoyi-window').addClass('hide');
                         });
                     }

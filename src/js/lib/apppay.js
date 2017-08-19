@@ -4,8 +4,8 @@ export default {
         $.get({
             url: `http://cbd.72work.com/app/test/index/${orderid}`
         }).done((jdata)=>{
-            if(jdata.data.code == 0){
-                appExec.callHandler('alipay', jdata.data.order_string , function(rsstring){
+            if(jdata.code == 0){
+                appExec.callHandler('alipay', JSON.stringify(jdata.data.order_string) , function(rsstring){
                     if(rsstring == 1){
                         cbfun();
                     }else{

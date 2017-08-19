@@ -50,7 +50,7 @@ export default {
             util.windowToast('金币不足');
             return;
         }
-        curBuildNum ++;
+        self.curBuildNum ++;
         self.curgold -= gold;
         $('.js-jb-show').html(self.curgold);
         self.areaArr.lands.forEach(function(item, index, array) {
