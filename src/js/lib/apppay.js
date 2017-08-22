@@ -2,7 +2,7 @@ import util from './util.js';
 export default {
     pay: function(orderid, cbfun) {
         $.get({
-            url: `http://cbd.72work.com/app/test/index/${orderid}`
+            url: `http://cbd.72work.com/app/alipay/index/${orderid}`
         }).done((jdata)=>{
             if(jdata.code == 0){
                 appExec.callHandler('alipay', JSON.stringify(jdata.data.order_string) , function(rsstring){

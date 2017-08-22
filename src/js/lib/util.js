@@ -22,7 +22,6 @@ export default {
         }).done((jdata)=>{
             //console.log('global done', jdata);
             if(jdata.code == -1 || jdata.code == '-1'){
-                self.setCookie('ci_session','');
             }
             if(jdata.code != 0){
                 self.windowToast(jdata.msg || '操作失败，请重试');
@@ -42,7 +41,6 @@ export default {
         }).done((jdata)=>{
             //console.log('global done', jdata);
             if(jdata.code == -1 || jdata.code == '-1'){
-                self.setCookie('ci_session','');
             }
             if(jdata.code != 0){
                 self.windowToast(jdata.msg || '操作失败，请重试');
@@ -60,7 +58,6 @@ export default {
             data: $.extend(requestData,{token: window.testtoken})
         }).done((jdata)=>{
             if(jdata.code == -1 || jdata.code == '-1'){
-                self.setCookie('ci_session','');
             }
             if(jdata.code != 0){
                 self.windowToast(jdata.msg || '操作失败，请重试');
@@ -112,6 +109,15 @@ export default {
             return "";
         }
     },
+    timeformatshow: function(second) {
+        var h = Math.floor(second / 3600);
+        var m = Math.floor((second - h * 3600)/60);
+        var s = Math.ceil((second-h * 3600) % 60);
+        return `${this.pad(h,2)}:${this.pad(m,2)}:${this.pad(s,2)}`;
+    },
+    pad: function(num, n) {  
+        return Array(n>(num+'').length? (n-(''+num).length+1):0).join(0)+num;  
+    }, 
     is_weixn: function() {
         var ua = navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == "micromessenger") {

@@ -15,6 +15,7 @@ var pageTpl = {
 
 var app = {
     smsTimer: null,
+    szTimer: null,
     waiting: new legoWaitng("请稍后.", "extraClass"),
     curSelectArea: null,
     userinfo: null,
@@ -43,6 +44,7 @@ var app = {
             cancel_callback:function(){},	/*分享失败回调*/
             debug:false	/*是否启用调试*/
         })
+        util.setCookie('is_app', util.is_weixn()?'0':'1');
     },
     gameviewInit: function(){
         var self = this;
@@ -66,6 +68,45 @@ var app = {
                 $('.js-main-view').addClass('hide');
             }
         });
+        self.getShowzuTime();
+    },
+    /** 获取收租时间 */
+    getShowzuTime: function(){
+        var self = this;
+        $.get({
+            url: 'http://cbd.72work.com/app/api/sz_time',
+            dataType: 'JSONP',
+        }).done((jdata)=>{
+            if(jdata.data.type == 1){
+                /** 没有收租建筑 */
+                $('.js-user-shouzu-bt').attr({
+                    src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_1.png'
+                });
+                $('.user-shouzu-timeout').addClass('hide');
+            }else if(jdata.data.type == 2){
+                var lasttimeup = jdata.data.sz_time;
+                /** 倒计时 */
+                $('.js-user-shouzu-bt').attr({
+                    src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_2.png'
+                });
+                szTimer = setInterval(()=>{
+                    $('.user-shouzu-timeout').html(`(${util.timeformatshow(lasttimeup)})`);
+                    lasttimeup--;
+                    if(lasttimeup<=0){
+                        clearInterval(szTimer);
+                        self.getShowzuTime();
+                    }
+                },1000);
+
+                $('.user-shouzu-timeout').removeClass('hide');
+            }else if(jdata.data.type == 3){
+                /** 立即收租 */
+                $('.js-user-shouzu-bt').attr({
+                    src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_3.png'
+                });
+                $('.user-shouzu-timeout').addClass('hide');
+            }
+        })
     },
     updateUserInfo: function(){
         var self = this;
@@ -196,7 +237,7 @@ var app = {
             if(jdata.code == 0){
                 window.testtoken = jdata.data.token;
                 //window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
-                if(/com/.test(window.location.href)){
+                if(/com/.test(window.location.href) && util.is_weixn()){
                     setTimeout(()=>{
                         window.location.href = 'http://cbd.72work.com/app/ashop/up_member_info';
                     }, 2000);
@@ -527,11 +568,12 @@ var app = {
             util.ajaxFun('/app/main/getIncome',{}).done((jdata)=>{
                 if(jdata.code == 0){
                     util.windowToast(jdata.msg);
+                    self.getShowzuTime();
                     $('.js-shouzu-add').html('+'+jdata.data.jb).removeClass('hide');
                     $('.js-jb-show').html(jdata.data.left_jb);
                     setTimeout(()=>{
                         $('.js-shouzu-add').addClass('hide');
-                    }, 4000);
+                    }, 2000);
                 }
             })
         });

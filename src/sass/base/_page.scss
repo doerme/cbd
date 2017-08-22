@@ -9,10 +9,20 @@
     -webkit-overflow-scrolling: touch;
     .user-shouzu-bt{
         position: fixed;
-        width: rem(174);
-        height: rem(68);
+        width: rem(266);
+        height: rem(66);
         right: rem(28);
         bottom: rem(28);
+        z-index: 10;
+    }
+    .user-shouzu-timeout{
+        position: fixed;
+        pointer-events: none;
+        font-size: rem(25);
+        right: rem(48);
+        bottom: rem(28);
+        color: #ccc;
+        line-height: rem(66);
         z-index: 10;
     }
     .user-switch{

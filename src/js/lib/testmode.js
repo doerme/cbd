@@ -24,9 +24,15 @@ export default {
         $('.js-jb-show').html(self.curgold);
         $('.js-user-name').html('还没有名字');
         $('.js-activation_code_num').html();
+        $('.js-user-avatar').attr({
+            src: '//cbd.tcpan.com/mex/cbd/img/page/dog.jpg'
+        })
         $('.js-user-switch,.js-active,.js-go-qr-view,.js-go-jiaoyi,.js-user-fans').addClass('hide');
         self.testBind();
         self.drawArea();
+        $('.js-user-shouzu-bt').attr({
+            src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_3.png'
+        });
     },
     drawArea: function(){
         var self = this;
