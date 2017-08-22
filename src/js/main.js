@@ -490,7 +490,11 @@ var app = {
             util.ajaxFun('/app/main/logout',{});
             $('.js-login-wrap').removeClass('hide');
             $('.js-main-view').addClass('hide');
-        })
+        });
+        /** 骰宝 */
+        $('.js-user-saibao').on('click', function(){
+            window.location.href='/app/sb/entrance';
+        });
         /** 激活按钮 */
         $('.js-active').on('click', function(){
             self.updateUserInfo();

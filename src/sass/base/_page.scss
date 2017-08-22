@@ -7,6 +7,14 @@
     background: #4ac1e3;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    .user-saibao{
+        position: fixed;
+        width: rem(94);
+        height: rem(274);
+        left: rem(26);
+        top: rem(128);
+        z-index: 10;
+    }
     .user-shouzu-bt{
         position: fixed;
         width: rem(266);

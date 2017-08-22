@@ -108,6 +108,12 @@ export default {
         $('.js-db-sure').on('click', function(){
             util.windowToast('拆迁完成');
             $('.js-destory-building').addClass('hide');
+        });
+        $('.js-user-saibao').on('click', function(){
+            console.log(1);
+        })
+        $('.js-user-switch').on('click', function(){
+            console.log(2);
         })
     }
 }
