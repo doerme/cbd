@@ -1,0 +1,73 @@
+@charset "UTF-8";
+$font_size : 75;
+
+@function rem($pixels){
+    @return $pixels / $font_size + rem;
+}
+@import "base/base";
+@import "img";
+
+.ali-wrap{
+    position: relative;
+    width: 100%;
+    .ali-phone-show{
+        height: rem(150);
+        line-height: rem(150);
+        font-size: rem(48);
+        color: #333;
+        text-indent: rem(100);
+        background: url('../img/alipay/phone-icon.png') no-repeat rem(36) center;
+        background-size: rem(33) rem(48); 
+    }
+}
+.alibind-bt{
+    margin-top: rem(30);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background: #ffc100;
+    width: rem(360);
+    height: rem(86);
+    font-size: rem(32);
+    color: #FFF;
+    text-align: center;
+    line-height: rem(86);
+    border-radius: rem(40);
+}
+.ali-form{
+    .ali-form-line{
+        display: block;
+        position: relative;
+        width: rem(690);
+        height: rem(90);
+        line-height: rem(90);
+        border: 1px solid #ccc;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: rem(30);
+    }
+    .half-ip{
+        width: 65%;
+    }
+    input{
+        border: none;
+        font-size: rem(30);
+        color: #999;
+        height: rem(80);
+        line-height: rem(80);
+        text-indent: rem(26);
+        outline: none;
+    }
+    .alicheckcode{
+        width: 30%;
+        display: inline-block;
+        height: rem(80);
+    }
+    .getsmsmsg{
+        width: 30%;
+        display: inline-block;
+        text-align: right;
+        font-size: rem(28);
+        color: #349dff;
+    }
+}

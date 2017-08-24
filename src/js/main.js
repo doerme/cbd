@@ -89,11 +89,14 @@ var app = {
                 $('.js-user-shouzu-bt').attr({
                     src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_2.png'
                 });
-                szTimer = setInterval(()=>{
+                if(self.szTimer){
+                    clearInterval(self.szTimer);
+                }
+                self.szTimer = setInterval(()=>{
                     $('.user-shouzu-timeout').html(`(${util.timeformatshow(lasttimeup)})`);
                     lasttimeup--;
                     if(lasttimeup<=0){
-                        clearInterval(szTimer);
+                        clearInterval(self.szTimer);
                         self.getShowzuTime();
                     }
                 },1000);
@@ -326,13 +329,9 @@ var app = {
         var self = this;
         /** 提现按钮 */
         $('.js-jiaoyi-window').on('click', '.js-list-tixian', function(){
-            util.windowToast('请稍后');
-            window.location.href = $(this).data('txurl');
-            // util.ajaxFun('/app/main/draw',{jb_id: $(this).data('jbid')}).done((jdata)=>{
-            //     if(jdata.code == 0){
-
-            //     }
-            // });
+            util.windowToast('请稍后.');
+            console.log('self.userinfo.alipay_account', !self.userinfo.alipay_account, self.userinfo.phone);
+            !self.userinfo.alipay_account ? window.location.href = '/app/main/zfb?mobnum=' + self.userinfo.phone : window.location.href = $(this).data('txurl')
         });
         /** 购入金币弹窗 */
         $('.js-jiaoyi-in').on('click', ()=>{
@@ -615,5 +614,5 @@ window.onload = function(){
     setTimeout(()=>{
         app.init();
     },800)
-    
+
 }
