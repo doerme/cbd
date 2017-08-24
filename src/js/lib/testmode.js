@@ -20,7 +20,7 @@ export default {
         var self = this;
         document.styleSheets[0].addRule('.main-view div.userinfo-wrap::before','width: 50%');
         $('.js-login-wrap,.js-reg-wrap').addClass('hide');
-        $('.js-main-view').removeClass('hide');
+        $('.js-main-view,.js-user-saibao').removeClass('hide');
         $('.js-jb-show').html(self.curgold);
         $('.js-user-name').html('还没有名字');
         $('.js-activation_code_num').html();
