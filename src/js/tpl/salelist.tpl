@@ -7,7 +7,7 @@
     <span class="num green">-{{v.je}}</span>
     {{/if}}
     {{if v.state == '提现'}}
-    <a href="javascript:;" data-txurl = "{{v.alipay_tx_url}}" class="state tixian js-list-tixian">{{v.state}}</a>
+    <a href="javascript:;" data-aliurl = "{{v.alipay_tx_url}}" data-txurl = "{{v.tx_url}}" class="state tixian js-list-tixian">{{v.state}}</a>
     {{else}}
     <span class="state yellow">{{v.state}}</span>
     {{/if}}

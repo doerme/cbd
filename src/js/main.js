@@ -192,7 +192,7 @@ var app = {
     /** 完成注册 */
     regdone: function(){
         var self = this;
-        if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-mobile').val())){
+        if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-mobile').val().replace(/\s+/g,""))){
             util.windowToast('请输入正确手机号');
             return;
         }
@@ -225,7 +225,7 @@ var app = {
             self.gameviewInit();
             return;
         }
-        if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-login-mob').val())){
+        if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-login-mob').val().replace(/\s+/g,""))){
             util.windowToast('请输入正确手机号');
             return;
         }
@@ -285,7 +285,7 @@ var app = {
     /** 获取短信验证码 */
     getSmsCode: function(){
         var self = this;
-        if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-mobile').val())){
+        if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-mobile').val().replace(/\s+/g,""))){
             util.windowToast('请输入正确手机号');
             return;
         }
@@ -331,7 +331,11 @@ var app = {
         $('.js-jiaoyi-window').on('click', '.js-list-tixian', function(){
             util.windowToast('请稍后.');
             console.log('self.userinfo.alipay_account', !self.userinfo.alipay_account, self.userinfo.phone);
-            !self.userinfo.alipay_account ? window.location.href = '/app/main/zfb?mobnum=' + self.userinfo.phone : window.location.href = $(this).data('txurl')
+            if(self.pay_method == 'alipay'){
+                !self.userinfo.alipay_account ? window.location.href = '/app/main/zfb?mobnum=' + self.userinfo.phone : window.location.href = $(this).data('aliurl')
+            }else{
+                window.location.href = $(this).data('txurl');
+            }
         });
         /** 购入金币弹窗 */
         $('.js-jiaoyi-in').on('click', ()=>{
@@ -533,7 +537,7 @@ var app = {
         });
         /** 转赠确认 */
         $('.js-zryh-s1').on('click', '.js-gozr', function(){
-            if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val())){
+            if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val().replace(/\s+/g,""))){
                 util.windowToast('请输入正确手机号');
                 return;
             }
@@ -547,7 +551,7 @@ var app = {
         });
         /** 转赠完成 */
         $('.js-zrdone').on('click', function(){
-            if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val())){
+            if(!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test($('.js-ccf-tel').val().replace(/\s+/g,""))){
                 util.windowToast('请输入正确手机号');
                 return;
             }
