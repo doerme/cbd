@@ -1,4 +1,4 @@
-# CBD
+# es6 zepto test game
 
 ## FTP路径
 ```
