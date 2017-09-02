@@ -398,9 +398,9 @@ var app = {
         });
         /**选地建筑逻辑 */
         $('.js-area-wrap').on('click', '.area-unit', function(){
+            return;
             self.curSelectArea = $(this);
             if($(this).attr('build_type') == 0){
-                
                 $('.select-build-wrap').removeClass('hide');
             }else{
                 $('.js-destory-building').removeClass('hide');
