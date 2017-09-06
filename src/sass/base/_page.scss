@@ -64,7 +64,7 @@
             position: absolute;
             width: rem(27);
             height: rem(41);
-            left: rem(352);
+            left: rem(382);
             top: rem(30);
         }
         .user-avatar{
@@ -100,17 +100,24 @@
         }
         .gold-plus{
             position: absolute;
-            width: rem(38);
-            height: rem(22);
-            top: rem(60);
+            top: rem(55);
             left: rem(268);
+            width: rem(150);
+            height: rem(30);
+            text-indent: rem(30);
+            font-size: rem(24);
+            color: #ffc000;
+            background: #000 url('../img/page/zs.png') no-repeat rem(1) rem(5);
+            background-size: rem(28) rem(23);
+            border-radius: rem(10);
+            overflow: hidden;
         }
         .qrcode{
             position: absolute;
             width: rem(50);
             height: rem(50);
             top: rem(26);
-            left: rem(415);
+            left: rem(445);
         }
         .package{
             position: absolute;

@@ -68,6 +68,12 @@ var app = {
                 $('.js-main-view').addClass('hide');
             }
         });
+        /**获取钻石数 */
+        util.ajaxFun('/app/sb/getUserZs',{}).done((jdata)=>{
+            if(jdata.code == 0){
+                $('.js-user-zs').html(jdata.data.zs);
+            }
+        });
         self.getShowzuTime();
     },
     /** 获取收租时间 */
@@ -131,7 +137,13 @@ var app = {
                 $('.js-login-wrap').removeClass('hide');
                 $('.js-main-view').addClass('hide');
             }
-        })
+        });
+        /**获取钻石数 */
+        util.ajaxFun('/app/sb/getUserZs',{}).done((jdata)=>{
+            if(jdata.code == 0){
+                $('.js-user-zs').html(jdata.data.zs);
+            }
+        });
     },
     /** 购买房产 */
     buildMap: function(selectbuildtype){
