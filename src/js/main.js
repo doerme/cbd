@@ -23,13 +23,14 @@ var app = {
     init: function(){
         var self = this;
         $('.js-loading-wrap').addClass('hide');
-        $('.js-login-wrap').removeClass('hide');
         if(self.gamemode == 'test') {
             testmode.gameviewInit();
         }else{
             $.get('/app/api/is_login_tow/',{}).done((jdata)=>{
                 if(jdata.data.login==1){
                     self.gameviewInit();
+                }else{
+                    $('.js-login-wrap').removeClass('hide');
                 }
             })
             self.bindEven();
@@ -39,7 +40,7 @@ var app = {
             desc: 'CBD盛大开盘，别再错过这个机遇，下一个地产大亨就是你。',
             link: window.location.href, /*默认值是当前页面连接*/
             img:'http://cbd.tcpan.com/mex/cbd/img/page/icon.png',
-            request_share_url: '//cbd.72work.com/common/jsapi?url=' + encodeURIComponent(window.location.href.split('#')[0]), /*默认值是h5.yy.com*/
+            request_share_url: '/common/jsapi?url=' + encodeURIComponent(window.location.href.split('#')[0]), /*默认值是h5.yy.com*/
             success_callback:function(){},	/*分享成功回调*/
             cancel_callback:function(){},	/*分享失败回调*/
             debug:false	/*是否启用调试*/
@@ -80,20 +81,20 @@ var app = {
     getShowzuTime: function(){
         var self = this;
         $.get({
-            url: 'http://cbd.72work.com/app/api/sz_time',
+            url: '/app/api/sz_time',
             dataType: 'JSONP',
         }).done((jdata)=>{
             if(jdata.data.type == 1){
                 /** 没有收租建筑 */
                 $('.js-user-shouzu-bt').attr({
-                    src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_1.png'
+                    src: '/mex/cbd/img/shouzu/shouzu_1.png'
                 });
                 $('.user-shouzu-timeout').addClass('hide');
             }else if(jdata.data.type == 2){
                 var lasttimeup = jdata.data.sz_time;
                 /** 倒计时 */
                 $('.js-user-shouzu-bt').attr({
-                    src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_2.png'
+                    src: '/mex/cbd/img/shouzu/shouzu_2.png'
                 });
                 if(self.szTimer){
                     clearInterval(self.szTimer);
@@ -111,7 +112,7 @@ var app = {
             }else if(jdata.data.type == 3){
                 /** 立即收租 */
                 $('.js-user-shouzu-bt').attr({
-                    src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_3.png'
+                    src: '/mex/cbd/img/shouzu/shouzu_3.png'
                 });
                 $('.user-shouzu-timeout').addClass('hide');
             }
@@ -254,7 +255,7 @@ var app = {
                 //window.testtoken = '7f76bb56a511792cfe56ccfd7a492fd7';
                 if(/com/.test(window.location.href) && util.is_weixn()){
                     setTimeout(()=>{
-                        window.location.href = 'http://cbd.72work.com/app/ashop/up_member_info';
+                        window.location.href = '/app/ashop/up_member_info';
                     }, 2000);
                 }
                 self.gameviewInit();
@@ -410,11 +411,11 @@ var app = {
         });
         /**选地建筑逻辑 */
         $('.js-area-wrap').on('click', '.area-unit', function(){
-            return;
             self.curSelectArea = $(this);
             if($(this).attr('build_type') == 0){
                 $('.select-build-wrap').removeClass('hide');
             }else{
+                return;
                 $('.js-destory-building').removeClass('hide');
                 $('.js-bcj').html('---');
                 util.ajaxFun('/app/main/getLandInfo',{
@@ -508,7 +509,7 @@ var app = {
         });
         /** 骰宝 */
         $('.js-user-saibao').on('click', function(){
-            window.location.href='/app/sb/entrance';
+            window.location.href='/app/sb/index';
         });
         /** 激活按钮 */
         $('.js-active').on('click', function(){

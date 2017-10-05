@@ -31,7 +31,7 @@ export default {
         self.testBind();
         self.drawArea();
         $('.js-user-shouzu-bt').attr({
-            src: 'http://cbd.72work.com/mex/cbd/img/shouzu/shouzu_3.png'
+            src: '/mex/cbd/img/shouzu/shouzu_3.png'
         });
     },
     drawArea: function(){
