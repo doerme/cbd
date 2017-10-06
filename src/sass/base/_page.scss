@@ -175,13 +175,13 @@
     &::before{
         content: '';
         position: absolute;
-        top: rem(60);
+        top: rem(58);
         left: 50%;
-        margin-left: rem(-232);
-        background:  url('../img/page/login/CBD-logo.png') no-repeat;
+        margin-left: rem(-248);
+        background:  url('../img/page/login/CBD-logo.png?v=1') no-repeat;
         background-size: 100% auto;
-        width: rem(465);
-        height: rem(108);
+        width: rem(497);
+        height: rem(125);
     }
     .form-input{
         border: none;
