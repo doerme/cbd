@@ -291,3 +291,54 @@
         }
     }
 }
+.shouzu-window{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    &-mask{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,0.7);
+    }
+    &-main{
+        position: absolute;
+        background: url('../img/page/shouzu-window.png') no-repeat;
+        background-size: 100% auto;
+        width: rem(623);
+        height: rem(680);
+        top: 20%;
+        left: 50%;
+        margin-left: rem(-623/2);
+        div{
+            position: absolute;
+            color: #ff7200;
+        }
+        .zj{
+            font-size: rem(60);
+            top: rem(446);
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+        .rs{
+            font-size: rem(36);
+            top: rem(590);
+            width: 49%;
+            text-align: center;
+            left: 0;
+        }
+        .hb{
+            font-size: rem(36);
+            top: rem(590);
+            width: 49%;
+            text-align: center;
+            right: 0;
+        }
+    }
+}
