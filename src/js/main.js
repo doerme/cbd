@@ -338,8 +338,20 @@ var app = {
             }
         })
     },
+    /** 更新存款 */
+    updateTr: function(){
+        util.ajaxFun('/app/main/get_zj',{}).done((jdata)=>{
+            if(jdata.code == 0){
+                $('.js-ck-show').addClass('open').html(jdata.data.sum_income);
+            }
+        });
+    },
     bindEven: function(){
         var self = this;
+        /** 查看存款 */
+        $('.js-ck-show').on('click', function(){
+            self.updateTr();
+        });
         /** 提现按钮 */
         $('.js-jiaoyi-window').on('click', '.js-list-tixian', function(){
             util.windowToast('请稍后.');
@@ -350,10 +362,35 @@ var app = {
                 window.location.href = $(this).data('txurl');
             }
         });
+        /** 投入 */
+        $('.js-jiaoyi-tropen').on('click', ()=>{
+            $('.js-jiaoyi-center').removeClass('hide').find('.ccc-value').addClass('hide');
+            $('.js-jiaoyi-numout,.js-jiaoyi-numin').addClass('hide');
+            $('.js-jiaoyi-tr').removeClass('hide');
+        });
+        /** 投入金币 */
+        $('.js-jiaoyi-tr').on('click', ()=>{
+            if(!$('.js-jiaoyi-num').val() || isNaN($('.js-jiaoyi-num').val())){
+                util.windowToast('请输入投入数量');
+                return;
+            }
+            util.ajaxPost('/app/main/jb_zr', {
+                jb: $('.js-jiaoyi-num').val()
+            }).done((jdata)=>{
+                if(jdata.code == 0){
+                    util.windowToast(jdata.data.msg || '执行成功');
+                    self.updateTr();
+                    self.updateUserInfo();
+                    $('.js-jiaoyi-center').addClass('hide');
+                }
+            })
+            //window.location.href = `//cbd.72work.com/app/main/exchangeCoin?type=1&jb=${$('.js-jiaoyi-num').val()}`;
+        });
+
         /** 购入金币弹窗 */
         $('.js-jiaoyi-in').on('click', ()=>{
             $('.js-jiaoyi-center').removeClass('hide').find('.ccc-value').addClass('hide');
-            $('.js-jiaoyi-numout').addClass('hide');
+            $('.js-jiaoyi-numout,.js-jiaoyi-tr').addClass('hide');
             $('.js-jiaoyi-numin').removeClass('hide');
         });
         /** 购入金币 */
@@ -382,7 +419,7 @@ var app = {
         $('.js-jiaoyi-out').on('click', ()=>{
             $('.js-jiaoyi-center').removeClass('hide').find('.ccc-value').removeClass('hide');
             $('.js-jiaoyi-numout').removeClass('hide');
-            $('.js-jiaoyi-numin').addClass('hide');
+            $('.js-jiaoyi-numin,.js-jiaoyi-tr').addClass('hide');
         });
         /** 卖出金币 */
         $('.js-jiaoyi-numout').on('click', ()=>{

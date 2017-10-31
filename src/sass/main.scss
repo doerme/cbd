@@ -38,6 +38,23 @@ body {
         }
     }
 }
+.eye-ck-show{
+    &::after{
+        content: '';
+        display: inline-block;
+        width: rem(27);
+        height: rem(16);
+        background: url('../img/page/eye-close.png') no-repeat center top;
+        background-size: 100% auto;
+        vertical-align: text-top;
+    }
+    &.open{
+        &::after{
+            background: url('../img/page/eye-open.png') no-repeat center top;
+            background-size: 100% auto;
+        }
+    }
+}
 .user-shouzu-add{
     position: fixed;
     right: rem(38);

@@ -102,7 +102,7 @@
         </div>
         <img class="user-saibao js-user-saibao" src="./img/page/left_menu.png" />
         <img class="user-switch js-user-switch" src="./img/page/switch.png" />
-        <img class="user-shouzu-bt js-user-shouzu-bt" src="./img/shouzu/shouzu-bt.png" />
+        <img class="user-shouzu-bt js-user-shouzu-bt" src="" />
         <div class="user-shouzu-add js-shouzu-add pt-page-moveToTopFade hide"></div>
         <div class="user-shouzu-timeout">(--:--:--)</div>
     </div>
@@ -167,10 +167,17 @@
         <div class="cc-title">装备交易中心</div>
         <div class="cc-close js-cc-close">×</div>
         <div class="cc-ctrl">
-            <div class="ccc-title">我的金币</div>
-            <div class="ccc-value js-jb-show">---</div>
-            <div class="ccc-out js-jiaoyi-out">出售</div>
-            <div class="ccc-in js-jiaoyi-in">购入</div>
+            <table class="title-table">
+                <tr><th>我的金币</th><th>我的钻石</th><th>我的存款</th></tr>
+                <tr>
+                    <td class="js-jb-show">--</td>
+                    <td class="js-user-zs">--</td>
+                    <td class="js-ck-show eye-ck-show">***</td>
+                </tr>
+            </table>
+            <div class="ccc-out three js-jiaoyi-out">出售</div>
+            <div class="ccc-in three js-jiaoyi-in">购入</div>
+            <div class="ccc-in2 three js-jiaoyi-tropen">投入</div>
         </div>
         <div class="cc-list">
             <ul class="js-cc-list">
@@ -254,6 +261,7 @@
         <div class="cc-ctrl">
             <div class="ccc-in js-jiaoyi-numin">购入</div>
             <div class="ccc-out js-jiaoyi-numout">卖出</div>
+            <div class="ccc-tr js-jiaoyi-tr">投入</div>
         </div>
     </div>
     <!-- in out window end -->

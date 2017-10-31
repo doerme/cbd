@@ -191,6 +191,21 @@
         width: 100%;
         height: rem(310);
         text-align: center;
+        .title-table{
+            width: 94%;
+            margin-top: rem(40);
+            margin-bottom: rem(40);
+            margin-left: 2%;
+            th{
+                font-size: rem(24);
+                width: 33%;
+                color: #999;
+            }
+            td{
+                font-size: rem(43);
+                color: #ff7200;
+            }
+        }
         .ccc-title{
             width: 100%;
             height: rem(80);
@@ -218,10 +233,24 @@
             color: #333;
             background: #ffc100;
             border-radius: rem(30);
+            &.three{
+                width: rem(180);
+            }
             &.gray{
                 background: #e3decf;
                 pointer-events: none;
             }
+        }
+        .ccc-tr{
+            display: inline-block;
+            width: rem(260);
+            height: rem(70);
+            text-align: center;
+            line-height: rem(70);
+            font-size: rem(30);
+            color: #333;
+            background: #77db0b;
+            border-radius: rem(30);
         }
         .ccc-in{
             display: inline-block;
@@ -232,6 +261,20 @@
             font-size: rem(30);
             color: #333;
             background: #ff7200;
+            border-radius: rem(30);
+            &.three{
+                width: rem(180);
+            }
+        }
+        .ccc-in2{
+            display: inline-block;
+            width: rem(180);
+            height: rem(70);
+            text-align: center;
+            line-height: rem(70);
+            font-size: rem(30);
+            color: #333;
+            background: #77db0b;
             border-radius: rem(30);
         }
     }
