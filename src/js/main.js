@@ -594,9 +594,19 @@ var app = {
                     setTimeout(()=>{
                         $('.js-shouzu-add').addClass('hide');
                     }, 2000);
+                    // new
+                    $('.js-shouzu-window').removeClass('hide');
+                    $('.js-shouzu-window .zj').html(jdata.data.jb);
+                    $('.js-shouzu-window .rs').html(jdata.data.yx_rs);
+                    $('.js-shouzu-window .hb').html(jdata.data.yx_zj);
                 }
             })
         });
+
+        /** 收租弹窗关闭 */
+        $('.shouzu-window-mask,.js-szw-close').on('click', function(){
+            $('.js-shouzu-window').addClass('hide');
+        })
 
         /** 显示粉丝列表 */
         $('.js-user-fans').on('click', function(){
