@@ -546,7 +546,8 @@ var app = {
         });
         /** 骰宝 */
         $('.js-user-saibao').on('click', function(){
-            window.location.href='/app/sb/index';
+            // window.location.href='/app/sb/index';
+            window.location.href = '/app/login_in/game';
         });
         /** 激活按钮 */
         $('.js-active').on('click', function(){
